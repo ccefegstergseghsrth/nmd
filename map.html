@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="长安舆图——以古地图之眼，观今日长安之城。墨线为道，朱印为记。">
+  <title>长安舆图 · 长安志</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="map-page">
+
+  <!-- 页面过渡层 -->
+  <div class="page-transition"></div>
+
+  <!-- ======== 主导航 ======== -->
+  <nav class="main-nav">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-seal">安</span>
+      长安志
+    </a>
+    <button class="nav-toggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">卷首</a></li>
+      <li><a href="culture.html">文化解码</a></li>
+      <li><a href="visit.html">探访实录</a></li>
+      <li><a href="archives.html">风物档案</a></li>
+      <li><a href="map.html" class="active">长安舆图</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== 长安舆图 全屏主体 ======== -->
+  <main class="map-fullpage">
+
+    <!-- 地图控件：缩放 + 复位 -->
+    <div class="map-controls">
+      <button class="map-ctrl ctrl-zoomin" aria-label="放大" title="放大">＋</button>
+      <button class="map-ctrl ctrl-zoomout" aria-label="缩小" title="缩小">－</button>
+      <button class="map-ctrl ctrl-reset" aria-label="复位" title="复位">&#10227;</button>
+    </div>
+
+    <!-- 图例 -->
+    <div class="map-legend">
+      <div class="map-legend-item">
+        <span class="leg-dot"></span>
+        <span>景点 &middot; 朱砂标记</span>
+      </div>
+    </div>
+
+    <!-- 地标编辑模式UI -->
+    <div class="map-edit-panel" id="mapEditPanel">
+      <div class="edit-header">
+        <span class="edit-badge">编辑模式</span>
+        <span class="edit-hint">按 E 退出</span>
+      </div>
+      <div class="edit-coords" id="editCoords">
+        <div class="coord-item" data-name="钟楼">
+          <span class="coord-label">钟楼：</span>
+          <span class="coord-value" id="coord-钟楼">x=52.5% y=22%</span>
+        </div>
+        <div class="coord-item" data-name="鼓楼">
+          <span class="coord-label">鼓楼：</span>
+          <span class="coord-value" id="coord-鼓楼">x=58.8% y=22%</span>
+        </div>
+        <div class="coord-item" data-name="城墙">
+          <span class="coord-label">城墙：</span>
+          <span class="coord-value" id="coord-城墙">x=43.5% y=45%</span>
+        </div>
+        <div class="coord-item" data-name="大雁塔">
+          <span class="coord-label">大雁塔：</span>
+          <span class="coord-value" id="coord-大雁塔">x=61.2% y=70%</span>
+        </div>
+        <div class="coord-item" data-name="小雁塔">
+          <span class="coord-label">小雁塔：</span>
+          <span class="coord-value" id="coord-小雁塔">x=52.8% y=68%</span>
+        </div>
+        <div class="coord-item" data-name="陕西历史博物馆">
+          <span class="coord-label">陕历博：</span>
+          <span class="coord-value" id="coord-陕西历史博物馆">x=78.5% y=55%</span>
+        </div>
+        <div class="coord-item" data-name="大唐不夜城">
+          <span class="coord-label">不夜城：</span>
+          <span class="coord-value" id="coord-大唐不夜城">x=79.2% y=88%</span>
+        </div>
+      </div>
+      <button class="edit-save-btn" id="editSaveBtn">💾 保存坐标</button>
+    </div>
+
+    <!-- 编辑模式提示 -->
+    <div class="edit-mode-hint" id="editModeHint">按 E 键进入编辑模式</div>
+
+    <!-- 交互层：地图 + 地标（整体缩放容器） -->
+    <div class="map-transform" id="mapTransform">
+
+      <!-- 底图：上传的卷轴地图 -->
+      <div class="map-bg-layer">
+        <img src="./images/map-bg.png" alt="长安文化核心区地图" class="map-image" id="mapImage">
+      </div>
+
+      <!-- ===== 七大标注点（绑定地图坐标） ===== -->
+      <!-- 钟楼 -->
+      <div class="map-marker" data-name="钟楼" data-type="古建筑" data-desc="明洪武十七年建成。城之中心，晨钟暮鼓。景云钟声曾响彻长安六百年。" data-link="archives-detail.html?id=zhonglou">
+        <div class="marker-pin">
+          <div class="pin-ring"></div>
+          <div class="pin-head"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-glow"></div>
+        </div>
+        <span class="marker-label">钟楼</span>
+      </div>
+
+      <!-- 鼓楼 -->
+      <div class="map-marker" data-name="鼓楼" data-type="古建筑" data-desc="与钟楼遥相呼应。建于明洪武十三年。比钟楼早四年，号称文武盛地。" data-link="archives-detail.html?id=gulou">
+        <div class="marker-pin">
+          <div class="pin-ring"></div>
+          <div class="pin-head"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-glow"></div>
+        </div>
+        <span class="marker-label">鼓楼</span>
+      </div>
+
+      <!-- 城墙 -->
+      <div class="map-marker" data-name="城墙" data-type="古建筑" data-desc="周长十三点七四公里。明洪武年间扩建。中国现存规模最大、保存最完整的古代军事城垣。" data-link="archives-detail.html?id=chengqiang">
+        <div class="marker-pin">
+          <div class="pin-ring"></div>
+          <div class="pin-head"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-glow"></div>
+        </div>
+        <span class="marker-label">城墙</span>
+      </div>
+
+      <!-- 大雁塔 -->
+      <div class="map-marker" data-name="大雁塔" data-type="佛塔" data-desc="唐永徽三年建，玄奘督造。七层方形砖塔，高六十四米。雁塔题名，进士及第之荣耀。" data-link="archives-detail.html?id=dayanta">
+        <div class="marker-pin">
+          <div class="pin-ring"></div>
+          <div class="pin-head"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-glow"></div>
+        </div>
+        <span class="marker-label">大雁塔</span>
+      </div>
+
+      <!-- 小雁塔 -->
+      <div class="map-marker" data-name="小雁塔" data-type="佛塔" data-desc="唐景龙年间建，荐福寺内。十五层密檐式砖塔。历经三次地震裂而复合，世称神合。" data-link="archives-detail.html?id=xiaoyanta">
+        <div class="marker-pin">
+          <div class="pin-ring"></div>
+          <div class="pin-head"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-glow"></div>
+        </div>
+        <span class="marker-label">小雁塔</span>
+      </div>
+
+      <!-- 陕西历史博物馆 -->
+      <div class="map-marker" data-name="陕西历史博物馆" data-type="博物馆" data-desc="华夏宝库，古都明珠。馆藏文物一百七十余万件。周秦汉唐，一馆尽览。" data-link="archives-detail.html?id=shanximuseum">
+        <div class="marker-pin">
+          <div class="pin-ring"></div>
+          <div class="pin-head"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-glow"></div>
+        </div>
+        <span class="marker-label">陕西历史博物馆</span>
+      </div>
+
+      <!-- 大唐不夜城 -->
+      <div class="map-marker" data-name="大唐不夜城" data-type="文化街区" data-desc="盛唐文化沉浸体验。北起大雁塔，南至唐城墙遗址。火树银花，一夜鱼龙舞。" data-link="culture-detail.html?id=datangbuyecheng">
+        <div class="marker-pin">
+          <div class="pin-ring"></div>
+          <div class="pin-head"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-glow"></div>
+        </div>
+        <span class="marker-label">大唐不夜城</span>
+      </div>
+
+    <!-- 卷轴卡片 -->
+      <div class="map-scroll-card" id="mapScrollCard">
+        <div class="scroll-card-inner">
+          <div class="scroll-card-header">
+            <span class="scroll-title" id="scrollTitle">——</span>
+            <button class="scroll-close" id="scrollClose" aria-label="关闭">×</button>
+          </div>
+          <div class="scroll-card-body">
+            <div class="scroll-era" id="scrollEra"></div>
+            <div class="scroll-tag" id="scrollTag"></div>
+            <div class="scroll-desc" id="scrollDesc"></div>
+          </div>
+          <div class="scroll-card-footer">
+            <button class="scroll-action" id="scrollAction">【进入志卷】</button>
+          </div>
+        </div>
+        <div class="scroll-shadow"></div>
+      </div>
+
+    </div><!-- /map-transform -->
+
+    <!-- 地图遮罩 -->
+    <div class="map-overlay" id="mapOverlay"></div>
+
+  </main><!-- /map-fullpage -->
+
+  <!-- ======== 底部装饰 ======== -->
+  <div class="section-index-header">
+    <div class="gold-divider wide"></div>
+    <span class="seal large gold" style="margin:1.5rem 0;display:inline-block;transform:rotate(-4deg);">舆图 &middot; 七景</span>
+    <p style="color:rgba(216,211,199,0.35);font-size:0.85rem;font-family:var(--font-display);letter-spacing:0.15em;margin-top:0.8rem;">
+      墨线为道 &middot; 朱印为记 &middot; 舆图之上 &middot; 长安在此
+    </p>
+  </div>
+
+  <!-- ======== 页脚 ======== -->
+  <footer class="site-footer">
+    <div class="footer-seal">志</div>
+    <p class="footer-text">
+      长安志 &middot; 数字文化展馆<br>
+      以数字之笔，书长安千年
+    </p>
+    <p style="color:rgba(216,211,199,0.15);font-size:0.75rem;margin-top:0.5rem;font-family:var(--font-display);letter-spacing:0.1em;">
+      盛唐幻想数字展馆 &copy; 2024
+    </p>
+    
+    <!-- 素材来源声明 -->
+    <div class="source-declaration">
+      <div class="source-title">素材来源声明</div>
+      <div class="source-content">
+        <div class="source-section">
+          <span class="source-label">📷 图片素材来源：</span>
+          <span class="source-list">小红书博主@长安摄影师、@古都漫步、@丝路影像、@城墙记忆</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">📝 文字内容参考：</span>
+          <span class="source-list">《长安十二时辰》、《西安通史》、陕西历史博物馆官网、西安市文旅局</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">🏛️ 文化解码板块：</span>
+          <span class="source-list">基于《丝绸之路文化研究》、《唐长安城考古报告》整理</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">🍜 风物档案板块：</span>
+          <span class="source-list">参考《陕西美食志》、《关中民俗志》及民间传承资料</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======== 脚本：V3 统一交互引擎 ======== -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>

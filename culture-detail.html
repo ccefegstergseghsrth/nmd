@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文化解码 · 长安志</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/detail.css">
+</head>
+<body class="detail-page culture-detail">
+
+<!-- 页面过渡 -->
+<div class="page-transition">
+  <div class="page-transition-inner"></div>
+</div>
+
+<!-- 导航 -->
+<nav class="main-nav">
+  <a href="index.html" class="nav-brand">
+    <span class="brand-seal">安</span>
+    长安志
+  </a>
+  <button class="nav-toggle" aria-label="菜单">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">卷首</a></li>
+    <li><a href="culture.html" class="active">文化解码</a></li>
+    <li><a href="visit.html">探访实录</a></li>
+    <li><a href="archives.html">风物档案</a></li>
+    <li><a href="map.html">长安舆图</a></li>
+  </ul>
+</nav>
+
+<!-- 详情渲染区域 -->
+<div class="detail-page" id="detailPage">
+  <section class="detail-hero" id="detailHero"></section>
+  <div class="detail-layout">
+    <aside class="detail-sidebar" id="sidebar">
+      <div class="poem-scroll" id="poemScroll"></div>
+      <div class="timeline" id="timeline"><span class="timeline-title">历史时间轴</span></div>
+    </aside>
+    <main class="detail-content">
+      <a href="culture.html" class="back-btn">&larr; 返回文化解码</a>
+      <div class="title-label" id="titleLabel"></div>
+      <div class="gold-divider"></div>
+      <div id="contentBlocks"></div>
+      <div id="endSeal"></div>
+    </main>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// 文化解码 - 内联降级数据（与 data/culture.json 格式一致）
+// ============================================================
+var cultureData = {
+  "datangbuyecheng": {
+    "title": "大唐不夜城",
+    "subtitle": "火树银花合 · 星桥铁锁开",
+    "category": "文化解码",
+    "era": "唐代至今",
+    "titleLabel": "溯源流光",
+    "heroImageLabel": "大唐不夜城 · 鸟瞰全景",
+    "imageCount": 4,
+    "poems": [
+      {
+        "badge": "初唐",
+        "lines": [
+          "火树银花合，星桥铁锁开",
+          "暗尘随马去，明月逐人来",
+          "游伎皆秾李，行歌尽落梅",
+          "金吾不禁夜，玉漏莫相催"
+        ],
+        "source": "—— 苏味道《正月十五夜》",
+        "seal": "苏"
+      }
+    ],
+    "timeline": [
+      {
+        "time": "公元713年",
+        "text": "唐睿宗时期安福门灯轮盛会"
+      },
+      {
+        "time": "唐玄宗时期",
+        "text": "兴庆宫灯楼与踏歌盛景"
+      },
+      {
+        "time": "现代",
+        "text": "大唐不夜城文化地标重建"
+      }
+    ],
+    "sections": [
+      {
+        "type": "text-block",
+        "heading": "火树银花不夜天 —— 大唐上元灯会的千年回响",
+        "label": "火树银花不夜天 ...",
+        "content": [
+          "唐代的上元节（正月十五），是长安城一年中最盛大的节日。据《大唐新语》记载，每年正月十四至十六，全城取消宵禁，金吾弛禁，特许百姓夜行。朱雀大街两侧万盏宫灯齐燃，照得整座长安城如同白昼。士庶男女倾城而出，车马塞路，人潮如织，欢笑声彻夜不绝，这便是史书上赫赫有名的“金吾不禁夜”。"
+        ]
+      },
+      {
+        "type": "text-block",
+        "heading": "唐睿宗灯轮盛会",
+        "label": "唐睿宗灯轮盛会",
+        "content": [
+          "唐睿宗李旦先天二年（公元713年），曾在安福门外竖起一座高达二十丈的巨大灯轮，上裹锦绣，饰以金银，悬珠玉金银，微风一过，锵然有声。灯轮上点燃五万盏油灯，簇簇灯火犹如万花齐放，远观恰如一轮巨大的光环照耀长安夜空。长安市民倾城观灯，场面之宏大堪称空前绝后。"
+        ]
+      },
+      {
+        "type": "full-image",
+        "label": "唐长安城 · 复原全景图",
+        "imageNum": 1
+      },
+      {
+        "type": "quote",
+        "lines": [
+          "慈恩塔下题名处，十七人中最少年。"
+        ],
+        "source": ""
+      },
+      {
+        "type": "text-block",
+        "heading": "从皇家禁苑到现代文化地标",
+        "label": "从皇家禁苑到现代...",
+        "content": [
+          "大唐不夜城所在的位置，正是唐代大慈恩寺和大雁塔所在地——晋昌坊的东缘。贞观二十二年（公元648年），太子李治为追念母亲文德皇后，下令修建大慈恩寺。寺院落成后，玄奘法师自天竺取经归来，被延请至大慈恩寺担任首任住持，并在寺内修建大雁塔以贮藏经卷。"
+        ]
+      },
+      {
+        "type": "text-block",
+        "heading": "曲江流饮与雁塔题名",
+        "label": "曲江流饮与雁塔题...",
+        "content": [
+          "大慈恩寺南面的曲江池是唐代皇家园林，每逢春日，进士及第后的“曲江流饮”、“雁塔题名”更是唐代文人最荣耀的时刻。新科进士们在曲江池畔宴饮赋诗，随后前往大慈恩寺大雁塔下题名留念。白居易二十七岁登科后曾在此题诗，满纸风华与意气，千载之后读来犹令人心折。"
+        ]
+      },
+      {
+        "type": "full-image",
+        "label": "大唐不夜城 · 华灯初上",
+        "imageNum": 2
+      },
+      {
+        "type": "info-cards",
+        "title": "周边文化地标",
+        "label": "相关地点",
+        "cards": [
+          {
+            "name": "大雁塔",
+            "dist": "0.3km",
+            "reason": "唐代‘雁塔题名’文化发源地",
+            "icon": "🗼"
+          },
+          {
+            "name": "大唐芙蓉园",
+            "dist": "0.8km",
+            "reason": "唐代皇家园林曲江池遗址重建",
+            "icon": "🏠"
+          },
+          {
+            "name": "陕西历史博物馆",
+            "dist": "2.1km",
+            "reason": "收藏周秦汉唐历代珍贵文物",
+            "icon": "🏛"
+          },
+          {
+            "name": "唐城墙遗址",
+            "dist": "1.5km",
+            "reason": "唐代长安城墙遗址公园",
+            "icon": "🏯"
+          }
+        ]
+      },
+      {
+        "type": "reading",
+        "title": "延伸探索",
+        "label": "推荐阅读",
+        "items": [
+          {
+            "title": "丝路长安",
+            "desc": "驼铃古道上的文明互鉴，万里丝路始于长安",
+            "link": "culture-detail.html?id=silu"
+          },
+          {
+            "title": "城墙史话",
+            "desc": "高筑墙广积粮，十三朝古都的巍峨屏障",
+            "link": "culture-detail.html?id=chengqiang"
+          },
+          {
+            "title": "曲江遗梦",
+            "desc": "曲江流饮雁塔题名，进士及第的千古风流",
+            "link": "culture-detail.html?id=qujiang"
+          }
+        ]
+      }
+    ]
+  },
+  "silu": {
+    "title": "丝路长安",
+    "subtitle": "驼铃古道丝绸路 · 胡马犹闻唐汉风",
+    "category": "文化解码",
+    "era": "汉代至今",
+    "titleLabel": "凿空万里",
+    "heroImageLabel": "丝绸之路 · 沙漠驼队",
+    "imageCount": 4,
+    "poems": [
+      {
+        "badge": "盛唐",
+        "lines": [
+          "渭城朝雨浥轻尘，客舍青青柳色新",
+          "劝君更尽一杯酒，西出阳关无故人"
+        ],
+        "source": "—— 王维《送元二使安西》",
+        "seal": "王"
+      }
+    ],
+    "timeline": [
+      {
+        "time": "公元前138年",
+        "text": "张骞首次出使西域"
+      },
+      {
+        "time": "唐代",
+        "text": "长安成为丝路东方起点"
+      },
+      {
+        "time": "公元629年",
+        "text": "玄奘西行求法"
+      }
+    ],
+    "sections": [
+      {
+        "type": "text-block",
+        "heading": "张骞凿空 —— 一个使臣的万里征途",
+        "label": "张骞凿空 —— ...",
+        "content": [
+          "汉武帝建元三年（公元前138年），年轻的郎官张骞奉命出使西域。他带领百余名随从，离开长安，踏上茫茫戈壁。这原本是一场联合同盟的军事外交——汉朝希望联合西域大月氏国共同对抗匈奴。然而，张骞一行刚出河西走廊就被匈奴骑兵俘获。"
+        ]
+      },
+      {
+        "type": "text-block",
+        "heading": "十年持节不辱使命",
+        "label": "十年持节不辱使命",
+        "content": [
+          "匈奴单于扣留张骞达十年之久，强迫他娶妻生子，试图消磨他的意志。但张骞始终手持汉节，不忘使命，最终寻得机会逃脱，继续西行。张骞历经千辛万苦，翻越帕米尔高原，途经大宛、康居，终于到达大月氏。"
+        ]
+      },
+      {
+        "type": "full-image",
+        "label": "丝绸之路 · 古道路线图",
+        "imageNum": 1
+      },
+      {
+        "type": "quote",
+        "lines": [
+          "黄河远上白云间，一片孤城万仞山。",
+          "羌笛何须怨杨柳，春风不度玉门关。"
+        ],
+        "source": ""
+      },
+      {
+        "type": "text-block",
+        "heading": "驼铃万里，文明交汇的长安密码",
+        "label": "驼铃万里，文明交...",
+        "content": [
+          "丝绸之路不仅是一条商业通道，更是一条文明传播的动脉。佛教正是沿着这条路线传入中国，彻底改变了东亚的宗教版图。东晋高僧法显、唐代高僧玄奘都是沿着丝绸之路西行求法。"
+        ]
+      },
+      {
+        "type": "text-block",
+        "heading": "国际大都市的包容精神",
+        "label": "国际大都市的包容...",
+        "content": [
+          "唐代长安是一座真正意义上的国际大都市，常住人口超过百万，其中外国侨民达数万人之众。来自波斯、粟特、突厥、新罗、日本等国的商人、使节、留学生、僧侣在长安安居乐业。他们带来了各地的音乐、舞蹈、饮食、服饰和宗教信仰。"
+        ]
+      },
+      {
+        "type": "full-image",
+        "label": "丝路驼队 · 大漠孤烟",
+        "imageNum": 2
+      },
+      {
+        "type": "info-cards",
+        "title": "周边文化地标",
+        "label": "相关地点",
+        "cards": [
+          {
+            "name": "大雁塔",
+            "dist": "0.5km",
+            "reason": "玄奘西行归来译经藏经之地",
+            "icon": "🗼"
+          },
+          {
+            "name": "大唐西市",
+            "dist": "3.2km",
+            "reason": "丝绸之路国际商贸中心遗址",
+            "icon": "🏪"
+          },
+          {
+            "name": "小雁塔",
+            "dist": "2.8km",
+            "reason": "唐代荐福寺佛塔，丝路文化地标",
+            "icon": "🗼"
+          },
+          {
+            "name": "兴庆宫",
+            "dist": "4.0km",
+            "reason": "唐玄宗理政与接待外国使节之所",
+            "icon": "🏛"
+          }
+        ]
+      },
+      {
+        "type": "reading",
+        "title": "延伸探索",
+        "label": "推荐阅读",
+        "items": [
+          {
+            "title": "大唐不夜城",
+            "desc": "火树银花不夜天，感受盛唐灯会的璀璨风华",
+            "link": "culture-detail.html?id=datangbuyecheng"
+          },
+          {
+            "title": "城墙史话",
+            "desc": "高筑墙广积粮，十三朝古都的巍峨屏障",
+            "link": "culture-detail.html?id=chengqiang"
+          },
+          {
+            "title": "曲江遗梦",
+            "desc": "曲江流饮雁塔题名，进士及第的千古风流",
+            "link": "culture-detail.html?id=qujiang"
+          }
+        ]
+      }
+    ]
+  },
+  "chengqiang": {
+    "title": "城墙史话",
+    "subtitle": "高筑墙 · 广积粮",
+    "category": "文化解码",
+    "era": "明代",
+    "titleLabel": "金城千里",
+    "heroImageLabel": "西安城墙 · 永宁门全景",
+    "imageCount": 4,
+    "poems": [
+      {
+        "badge": "盛唐",
+        "lines": [
+          "国破山河在，城春草木深",
+          "感时花溅泪，恨别鸟惊心"
+        ],
+        "source": "—— 杜甫《春望》",
+        "seal": "杜"
+      }
+    ],
+    "timeline": [
+      {
+        "time": "公元1370年",
+        "text": "明洪武三年始建城墙"
+      },
+      {
+        "time": "明末",
+        "text": "李自成围攻西安"
+      },
+      {
+        "time": "1983年",
+        "text": "城墙大规模修缮"
+      }
+    ],
+    "sections": [
+      {
+        "type": "text-block",
+        "heading": "一座城池的千年守望 —— 西安城墙的前世今生",
+        "label": "一座城池的千年守...",
+        "content": [
+          "西安城墙是中国现存规模最大、保存最完整的古代城垣，也是世界上历史最悠久、规模最宏大的古城墙之一。我们今日所见的西安城墙，始建于明太祖洪武三年（公元1370年），在隋唐长安城皇城的基础上扩建而成。"
+        ]
+      },
+      {
+        "type": "text-block",
+        "heading": "高筑墙广积粮缓称王",
+        "label": "高筑墙广积粮缓称...",
+        "content": [
+          "明太祖朱元璋采纳谋士朱升的建议——“高筑墙，广积粮，缓称王”，下令在全国范围内大规模修筑城墙，西安作为西北军事重镇，地位尤为重要。城墙全长13.74公里，高12米，底宽18米，顶宽15米，呈长方形。"
+        ]
+      },
+      {
+        "type": "full-image",
+        "label": "西安城墙 · 航拍全景",
+        "imageNum": 1
+      },
+      {
+        "type": "quote",
+        "lines": [
+          "秦时明月汉时关，万里长征人未还。",
+          "但使龙城飞将在，不教胡马度阴山。"
+        ],
+        "source": ""
+      },
+      {
+        "type": "text-block",
+        "heading": "从军事屏障到城市记忆 —— 城墙的文化嬗变",
+        "label": "从军事屏障到城市...",
+        "content": [
+          "在中国传统文化中，城墙不仅仅是一道军事防御工事，更承载着深刻的政治哲学内涵。“筑城以卫君，造郭以守民”，城墙是皇权的象征，是“礼制”思想的物质载体。西安城墙的十八座城门位置考究，正南正北，严格遵循中轴对称的营城法则。"
+        ]
+      },
+      {
+        "type": "text-block",
+        "heading": "连接古今的文化纽带",
+        "label": "连接古今的文化纽...",
+        "content": [
+          "城墙也是城市文化记忆的重要载体。每一块城砖都镌刻着岁月的痕迹，每一座城楼都见证了无数历史风云。如今，西安城墙已成为西安市民日常生活的一部分。晨练的老人在环城公园打太极，年轻人在城墙上骑行兜风，正月十五的城墙灯会吸引数十万市民登城赏灯。"
+        ]
+      },
+      {
+        "type": "full-image",
+        "label": "城墙夜景 · 华灯璀璨",
+        "imageNum": 2
+      },
+      {
+        "type": "info-cards",
+        "title": "周边文化地标",
+        "label": "相关地点",
+        "cards": [
+          {
+            "name": "钟楼",
+            "dist": "0.8km",
+            "reason": "西安城市中心，明代钟楼建筑瑰宝",
+            "icon": "📍"
+          },
+          {
+            "name": "鼓楼",
+            "dist": "0.9km",
+            "reason": "晨钟暮鼓，城中轴线上的时间坐标",
+            "icon": "🔔"
+          },
+          {
+            "name": "碑林",
+            "dist": "0.5km",
+            "reason": "中国古代书法艺术的宝库",
+            "icon": "📜"
+          },
+          {
+            "name": "回民街",
+            "dist": "0.3km",
+            "reason": "千年美食文化街区",
+            "icon": "🏛️"
+          }
+        ]
+      },
+      {
+        "type": "reading",
+        "title": "延伸探索",
+        "label": "推荐阅读",
+        "items": [
+          {
+            "title": "大唐不夜城",
+            "desc": "火树银花不夜天，感受盛唐灯会的璀璨风华",
+            "link": "culture-detail.html?id=datangbuyecheng"
+          },
+          {
+            "title": "丝路长安",
+            "desc": "驼铃古道上的文明互鉴，万里丝路始于长安",
+            "link": "culture-detail.html?id=silu"
+          },
+          {
+            "title": "曲江遗梦",
+            "desc": "曲江流饮雁塔题名，进士及第的千古风流",
+            "link": "culture-detail.html?id=qujiang"
+          }
+        ]
+      }
+    ]
+  },
+  "qujiang": {
+    "title": "曲江遗梦",
+    "subtitle": "曲江流饮 · 雁塔题名",
+    "category": "文化解码",
+    "era": "唐代至今",
+    "titleLabel": "曲水流觞",
+    "heroImageLabel": "曲江池 · 唐代皇家园林",
+    "imageCount": 4,
+    "poems": [
+      {
+        "badge": "盛唐",
+        "lines": [
+          "三月三日天气新，长安水边多丽人",
+          "态浓意远淑且真，肌理细腻骨肉匀"
+        ],
+        "source": "—— 杜甫《丽人行》",
+        "seal": "杜"
+      }
+    ],
+    "timeline": [
+      {
+        "time": "隋代",
+        "text": "开皇年间开凿曲江池"
+      },
+      {
+        "time": "唐代",
+        "text": "曲江成为皇家园林"
+      },
+      {
+        "time": "现代",
+        "text": "曲江池遗址公园重建"
+      }
+    ],
+    "sections": [
+      {
+        "type": "text-block",
+        "heading": "曲江流饮 —— 唐代文人的雅集盛景",
+        "label": "曲江流饮 —— ...",
+        "content": [
+          "曲江池位于长安城东南隅，是唐代著名的皇家园林。每逢三月三日上巳节，皇帝都会率领百官在此举行“曲江流饮”的雅集活动。文人们坐在曲江池畔，将酒杯放在流水上，酒杯停在谁面前，谁就要饮酒赋诗。这种风雅的游戏，成为唐代文人社交的重要方式。"
+        ]
+      },
+      {
+        "type": "text-block",
+        "heading": "雁塔题名 —— 进士及第的荣耀时刻",
+        "label": "雁塔题名 —— ...",
+        "content": [
+          "唐代科举制度完善后，新科进士及第后，会集体前往大慈恩寺大雁塔下题名留念。这一传统始于中唐，至晚唐时期更加盛行。白居易二十七岁登科后曾在大雁塔下题诗：“慈恩塔下题名处，十七人中最少年”，表达了他年少得志的豪迈之情。"
+        ]
+      },
+      {
+        "type": "full-image",
+        "label": "曲江池 · 唐代复原全景",
+        "imageNum": 1
+      },
+      {
+        "type": "quote",
+        "lines": [
+          "春风得意马蹄疾，一日看尽长安花。"
+        ],
+        "source": ""
+      },
+      {
+        "type": "text-block",
+        "heading": "从皇家禁苑到城市公园",
+        "label": "从皇家禁苑到城市...",
+        "content": [
+          "曲江池在唐代是皇家园林，普通百姓难以进入。随着朝代更迭，曲江池逐渐荒废。2008年，西安市政府在曲江池遗址上重建了曲江池遗址公园，恢复了唐代曲江池的部分景观。如今的曲江池遗址公园，已经成为西安市民休闲娱乐的好去处。"
+        ]
+      },
+      {
+        "type": "text-block",
+        "heading": "盛唐文化的现代传承",
+        "label": "盛唐文化的现代传...",
+        "content": [
+          "曲江池周边聚集了众多唐代文化地标：大雁塔、大唐芙蓉园、大唐不夜城等。这些景点共同构成了一个完整的唐代文化展示区。每当夜幕降临，华灯初上，曲江池畔流光溢彩，仿佛穿越回了那个万国来朝的盛唐时代。"
+        ]
+      },
+      {
+        "type": "full-image",
+        "label": "曲江池 · 现代夜景",
+        "imageNum": 2
+      },
+      {
+        "type": "info-cards",
+        "title": "周边文化地标",
+        "label": "相关地点",
+        "cards": [
+          {
+            "name": "大雁塔",
+            "dist": "0.5km",
+            "reason": "唐代‘雁塔题名’文化发源地",
+            "icon": "🗼"
+          },
+          {
+            "name": "大唐芙蓉园",
+            "dist": "0.3km",
+            "reason": "唐代皇家园林曲江池遗址重建",
+            "icon": "🏠"
+          },
+          {
+            "name": "大唐不夜城",
+            "dist": "0.8km",
+            "reason": "盛唐文化沉浸体验",
+            "icon": "🌟"
+          },
+          {
+            "name": "陕西历史博物馆",
+            "dist": "1.5km",
+            "reason": "收藏周秦汉唐历代珍贵文物",
+            "icon": "🏛"
+          }
+        ]
+      },
+      {
+        "type": "reading",
+        "title": "延伸探索",
+        "label": "推荐阅读",
+        "items": [
+          {
+            "title": "大唐不夜城",
+            "desc": "火树银花不夜天，感受盛唐灯会的璀璨风华",
+            "link": "culture-detail.html?id=datangbuyecheng"
+          },
+          {
+            "title": "丝路长安",
+            "desc": "驼铃古道上的文明互鉴，万里丝路始于长安",
+            "link": "culture-detail.html?id=silu"
+          },
+          {
+            "title": "城墙史话",
+            "desc": "高筑墙广积粮，十三朝古都的巍峨屏障",
+            "link": "culture-detail.html?id=chengqiang"
+          }
+        ]
+      }
+    ]
+  },
+  "qinling": {
+    "title": "秦岭风华",
+    "subtitle": "终南阴岭秀 · 积雪浮云端",
+    "category": "文化解码",
+    "era": "地质至今",
+    "titleLabel": "终南毓秀",
+    "heroImageLabel": "秦岭 · 中华龙脉",
+    "imageCount": 4,
+    "poems": [
+      {
+        "badge": "盛唐",
+        "lines": [
+          "终南阴岭秀，积雪浮云端",
+          "林表明霁色，城中增暮寒"
+        ],
+        "source": "—— 祖咏《终南望余雪》",
+        "seal": "祖"
+      }
+    ],
+    "timeline": [
+      {
+        "time": "远古",
+        "text": "秦岭山脉形成"
+      },
+      {
+        "time": "周秦",
+        "text": "成为华夏文明发源地"
+      },
+      {
+        "time": "现代",
+        "text": "国家级自然保护区"
+      }
+    ],
+    "sections": [
+      {
+        "type": "text-block",
+        "heading": "中华龙脉 —— 秦岭的地理意义",
+        "label": "中华龙脉 —— ...",
+        "content": [
+          "秦岭横亘于中国中部，西起甘肃，东至河南，全长约1600公里，是中国地理上最重要的南北分界线。秦岭以北是黄河流域，以南是长江流域。秦岭不仅是地理分界线，更是气候分界线、生态分界线和文化分界线。"
+        ]
+      },
+      {
+        "type": "text-block",
+        "heading": "终南山隐士文化",
+        "label": "终南山隐士文化",
+        "content": [
+          "终南山是秦岭的一段，位于西安南部。自古以来，终南山就是隐士修行的圣地。老子、姜子牙、张良、孙思邈等历史人物都曾在终南山隐居修行。唐代诗人王维的《终南别业》“行到水穷处，坐看云起时”，生动描绘了终南山的隐逸生活。"
+        ]
+      },
+      {
+        "type": "full-image",
+        "label": "秦岭 · 终南山雪景",
+        "imageNum": 1
+      },
+      {
+        "type": "quote",
+        "lines": [
+          "采菊东篱下，悠然见南山。"
+        ],
+        "source": ""
+      },
+      {
+        "type": "text-block",
+        "heading": "秦岭的生态价值",
+        "label": "秦岭的生态价值",
+        "content": [
+          "秦岭是中国生物多样性最丰富的地区之一，被誉为“生物基因库”。这里生活着大熊猫、金丝猴、朱鹮、羚牛等珍稀动物。秦岭也是中国重要的水源涵养地，渭河、汉江等主要河流都发源于秦岭。"
+        ]
+      },
+      {
+        "type": "text-block",
+        "heading": "秦岭文化保护",
+        "label": "秦岭文化保护",
+        "content": [
+          "近年来，秦岭生态环境保护受到高度重视。秦岭国家公园正在建设中，旨在保护秦岭的生态系统和文化遗产。秦岭不仅是自然遗产，更是文化遗产，是中华民族的精神家园。"
+        ]
+      },
+      {
+        "type": "full-image",
+        "label": "秦岭 · 生物多样性",
+        "imageNum": 2
+      },
+      {
+        "type": "info-cards",
+        "title": "周边文化地标",
+        "label": "相关地点",
+        "cards": [
+          {
+            "name": "终南山",
+            "dist": "30km",
+            "reason": "道教圣地，隐士修行之所",
+            "icon": "⛰️"
+          },
+          {
+            "name": "翠华山",
+            "dist": "25km",
+            "reason": "秦岭地质公园",
+            "icon": "🏔️"
+          },
+          {
+            "name": "南五台",
+            "dist": "35km",
+            "reason": "佛教圣地",
+            "icon": "🏯"
+          },
+          {
+            "name": "楼观台",
+            "dist": "40km",
+            "reason": "老子著《道德经》之地",
+            "icon": "🎋"
+          }
+        ]
+      },
+      {
+        "type": "reading",
+        "title": "延伸探索",
+        "label": "推荐阅读",
+        "items": [
+          {
+            "title": "大唐不夜城",
+            "desc": "火树银花不夜天，感受盛唐灯会的璀璨风华",
+            "link": "culture-detail.html?id=datangbuyecheng"
+          },
+          {
+            "title": "丝路长安",
+            "desc": "驼铃古道上的文明互鉴，万里丝路始于长安",
+            "link": "culture-detail.html?id=silu"
+          },
+          {
+            "title": "城墙史话",
+            "desc": "高筑墙广积粮，十三朝古都的巍峨屏障",
+            "link": "culture-detail.html?id=chengqiang"
+          }
+        ]
+      }
+    ]
+  },
+  "dayanta": {
+    "title": "大雁塔",
+    "subtitle": "雁塔题名处 · 十七人中最少年",
+    "category": "文化解码",
+    "era": "唐代",
+    "titleLabel": "雁塔题名",
+    "heroImageLabel": "大雁塔 · 千年佛光",
+    "imageCount": 4,
+    "poems": [
+      {
+        "badge": "初唐",
+        "lines": [
+          "塔势如涌出",
+          "孤高耸天宫",
+          "登临出世界",
+          "磴道盘虚空"
+        ],
+        "source": "—— 岑参《与高适薛据同登慈恩寺浮图》（节选）",
+        "seal": "岑"
+      },
+      {
+        "badge": "中唐",
+        "lines": [
+          "慈恩塔下题名处",
+          "十七人中最少年"
+        ],
+        "source": "—— 白居易",
+        "seal": "白"
+      },
+      {
+        "badge": "盛唐",
+        "lines": [
+          "十层突兀在虚空",
+          "四十门开面面风",
+          "却怪鸟飞平地上",
+          "自惊人语半天中"
+        ],
+        "source": "—— 章八元《题慈恩寺塔》（节选）",
+        "seal": "章"
+      }
+    ],
+    "timeline": [
+      {
+        "time": "公元648年",
+        "text": "太子李治建大慈恩寺追念文德皇后"
+      },
+      {
+        "time": "公元652年",
+        "text": "玄奘法师主持修建大雁塔贮藏经卷"
+      },
+      {
+        "time": "唐代",
+        "text": "雁塔题名成为进士及第最高荣耀"
+      }
+    ],
+    "sections": [
+      {
+        "type": "full-image",
+        "label": "大雁塔 · 航拍全景",
+        "imageNum": 2
+      },
+      {
+        "type": "text-block",
+        "heading": "千年佛光耀长安 —— 大雁塔的前世今生",
+        "label": "历史故事",
+        "content": [
+          "大雁塔位于唐长安城晋昌坊大慈恩寺内，又名慈恩寺塔。唐贞观二十二年（公元648年），太子李治为追念母亲文德皇后，下令修建大慈恩寺。寺院规模宏大，共有十余院、一千八百九十七间房，是唐长安城中最为宏伟的佛寺之一。",
+          "永徽三年（公元652年），玄奘法师为妥善保存从天竺取回的经卷、佛像和舍利，奏请朝廷在大慈恩寺内修建一座佛塔。唐高宗李治准许，并亲自参与规划设计。玄奘法师亲自参与督造，最初为五层土心砖塔，高一百八十尺。据《大慈恩寺三藏法师传》记载，建塔时“掘地得古碑，乃周穆王所建，名曰阿育王塔”，被视为祥瑞之兆。",
+          "武则天长安年间（公元701—704年），大雁塔曾进行大规模改建，增至十层。后历经战乱与地震，塔身有所损毁。五代后唐时期重修时改为七层，即为今日所见的七层方形楼阁式砖塔。大雁塔通高64.517米，底层边长25.5米，是中国现存最早、规模最大的唐代四方楼阁式砖塔。2014年，大雁塔作为“丝绸之路：长安—天山廊道的路网”的重要组成部分，被列入世界文化遗产名录。",
+          "如今，大雁塔已成为西安最具标志性的城市地标。塔北广场的亚洲最大音乐喷泉、塔南广场的玄奘铜像、以及大唐不夜城的璀璨灯火，共同构成了一幅古今交融的壮丽画卷。千年古塔依然矗立在古都的中心，默默守护着这座城市的记忆与荣光。"
+        ]
+      },
+      {
+        "type": "image-gallery",
+        "images": [
+          {
+            "num": 3,
+            "caption": "大雁塔 · 春色满园"
+          },
+          {
+            "num": 4,
+            "caption": "大雁塔北广场 · 音乐喷泉"
+          }
+        ]
+      },
+      {
+        "type": "text-block",
+        "heading": "玄奘与大雁塔 —— 一个僧人的伟大征程",
+        "label": "文化解读",
+        "content": [
+          "大雁塔与玄奘法师的名字密不可分。贞观三年（公元629年），玄奘法师从长安出发，踏上了西行求法的漫漫长路。他穿越河西走廊，翻越天山，横渡沙漠，历经千难万险，历时十七年，行程五万里，途经一百一十个国家，最终到达天竺那烂陀寺。在那烂陀寺，玄奘师从戒贤法师，学习大乘佛法，声名远播天竺各国。",
+          "贞观十九年（公元645年），玄奘法师携带六百五十七部梵文佛经、一百五十粒佛舍利和七尊佛像回到长安。唐太宗在朱雀大街举行盛大欢迎仪式，长安百姓倾城而出，万人空巷争睹高僧风采。玄奘法师在大慈恩寺内设立译场，潜心翻译佛经，历时十九年，共译出佛经七十五部一千三百三十五卷，为中国佛教的发展做出了不可磨灭的贡献。",
+          "玄奘法师还根据西行见闻撰写了《大唐西域记》十二卷，详细记载了沿途各国的地理、历史、文化、风俗，至今仍是研究古代中亚和南亚历史地理最珍贵的文献之一。明代小说家吴承恩以玄奘西行故事为蓝本，创作了中国四大名著之一的《西游记》，使玄奘法师的形象深入人心。",
+          "今天，在大雁塔南广场上矗立着一尊高大的玄奘铜像，手持锡杖，目光坚定地望着西方——那正是他千年前踏上求法之路的方向。大雁塔不仅是一座古老的建筑，更是中华民族开放包容、追求真理精神的不朽象征。"
+        ]
+      },
+      {
+        "type": "full-image",
+        "label": "大雁塔 · 落日余晖",
+        "imageNum": 1
+      },
+      {
+        "type": "info-cards",
+        "title": "周边文化地标",
+        "label": "相关地点",
+        "cards": [
+          {
+            "name": "大唐不夜城",
+            "dist": "0.3 km",
+            "reason": "火树银花，盛唐灯会的现代演绎",
+            "icon": "🏮"
+          },
+          {
+            "name": "大唐芙蓉园",
+            "dist": "0.8 km",
+            "reason": "唐代皇家园林曲江池遗址重建",
+            "icon": "🏠"
+          },
+          {
+            "name": "陕西历史博物馆",
+            "dist": "2.1 km",
+            "reason": "周秦汉唐历代珍贵文物荟萃",
+            "icon": "🏛"
+          },
+          {
+            "name": "唐城墙遗址",
+            "dist": "1.5 km",
+            "reason": "唐代长安城墙遗址公园",
+            "icon": "🏯"
+          }
+        ]
+      },
+      {
+        "type": "reading",
+        "title": "延伸探索",
+        "label": "推荐阅读",
+        "items": [
+          {
+            "title": "大唐不夜城",
+            "desc": "火树银花不夜天，感受盛唐灯会的璀璨风华",
+            "link": "culture-detail.html?id=datangbuyecheng"
+          },
+          {
+            "title": "丝路长安",
+            "desc": "驼铃古道上的文明互鉴，万里丝路始于长安",
+            "link": "culture-detail.html?id=silu"
+          },
+          {
+            "title": "曲江遗梦",
+            "desc": "曲江流饮雁塔题名，进士及第的千古风流",
+            "link": "culture-detail.html?id=qujiang"
+          }
+        ]
+      }
+    ]
+  }
+};
+
+// 引入统一图片资源管理
+var scriptEl = document.createElement('script');
+scriptEl.src = 'js/imageAssets.js';
+scriptEl.onload = function() {
+  // ============================================================
+  // 页面渲染引擎
+  // ============================================================
+  (function(){
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get('id') || 'datangbuyecheng';
+    var root = document.getElementById('detailPage');
+    if (!root) return;
+
+    var loadingEl = document.createElement('div');
+    loadingEl.id = '__cultureLoading';
+    loadingEl.setAttribute('style','text-align:center;padding:6rem 2rem;color:rgba(216,211,199,0.5);font-family:var(--font-display);letter-spacing:0.1em;');
+    loadingEl.textContent = '加载中...';
+    root.insertBefore(loadingEl, root.firstChild);
+
+    function renderWithData(data) {
+      var loading = document.getElementById('__cultureLoading');
+      if (loading) loading.remove();
+
+      var entry = data[id];
+      if (!entry) { entry = data['datangbuyecheng']; id = 'datangbuyecheng'; }
+
+      // ---- Hero ----
+      var heroEl = document.getElementById('detailHero');
+      console.log('Hero元素:', heroEl);
+      
+      if (heroEl && entry.title) {
+        // Hero Banner 读取 cover 字段
+        var heroImageSrc = cultureImgSrc(id, 'cover');
+        console.log('Hero图片路径(来自cover):', heroImageSrc);
+        
+        heroEl.innerHTML =
+          '<div class="hero-img-slot">' +
+            imgSlotHTML('r21x9', heroImageSrc, entry.heroImageLabel || entry.title) +
+          '</div>' +
+          '<div class="detail-hero-overlay"></div>' +
+          '<div class="detail-hero-content">' +
+            '<span class="detail-label">' + (entry.category || '文化解码') + '</span>' +
+            '<h1 class="detail-title">' + entry.title + '</h1>' +
+            '<p class="detail-subtitle">' + (entry.subtitle || '') + '</p>' +
+            '<div class="hero-tags">' +
+              '<span class="hero-tag">' + (entry.category || '') + '</span>' +
+              '<span class="hero-tag era">' + (entry.era || '') + '</span>' +
+            '</div>' +
+          '</div>';
+          
+        // 延迟检查实际渲染后的状态
+        setTimeout(function() {
+          var heroImg = heroEl.querySelector('img');
+          console.log('Hero内部img元素:', heroImg);
+          console.log('Hero img.src:', heroImg ? heroImg.src : 'null');
+          console.log('Hero计算后背景样式:', heroEl ? getComputedStyle(heroEl).backgroundImage : 'null');
+          console.log('Hero元素背景色:', heroEl ? getComputedStyle(heroEl).backgroundColor : 'null');
+        }, 100);
+      }
+
+      // ---- Sidebar 诗词 ----
+      var poemEl = document.getElementById('poemScroll');
+      if (poemEl && entry.poems) {
+        poemEl.innerHTML = '';
+        entry.poems.forEach(function(p) {
+          poemEl.innerHTML +=
+            '<div class="poem-block">' +
+              '<span class="poem-badge">' + (p.badge || '') + '</span>' +
+              '<div class="poem-lines">' +
+                (p.lines || []).map(function(l) { return '<p>' + l + '</p>'; }).join('') +
+              '</div>' +
+              '<p class="poem-source">' + (p.source || '') + '</p>' +
+              '<span class="poem-seal">' + (p.seal || '诗') + '</span>' +
+            '</div>';
+        });
+      }
+
+      // ---- Sidebar 时间轴 ----
+      var tlEl = document.getElementById('timeline');
+      if (tlEl && entry.timeline) {
+        (entry.timeline || []).forEach(function(t) {
+          tlEl.innerHTML +=
+            '<div class="timeline-item">' +
+              '<div class="timeline-dot"></div>' +
+              '<div class="timeline-content">' +
+                '<span class="timeline-time">' + t.time + '</span>' +
+                '<span class="timeline-text">' + t.text + '</span>' +
+              '</div>' +
+            '</div>';
+        });
+      }
+
+      // ---- 标题标签 ----
+      var labelEl = document.getElementById('titleLabel');
+      if (labelEl && entry.titleLabel) { labelEl.textContent = entry.titleLabel; }
+
+      // ---- Sections 渲染 ----
+      var blocksEl = document.getElementById('contentBlocks');
+      if (blocksEl && entry.sections) {
+        blocksEl.innerHTML = '';
+        entry.sections.forEach(function(sec) {
+          var h = renderSection(sec, id);
+          if (h) blocksEl.innerHTML += h;
+        });
+      }
+
+      // ---- 卷尾印章 ----
+      var sealEl = document.getElementById('endSeal');
+      if (sealEl) {
+        sealEl.innerHTML =
+          '<div class="gold-divider wide"></div>' +
+          '<div style="text-align:center;padding:2rem 0;">' +
+            '<span class="seal large gold">' + entry.title + '</span>' +
+            '<p style="color:rgba(216,211,199,0.3);font-size:0.8rem;margin-top:0.5rem;font-family:var(--font-display);letter-spacing:0.15em;">' +
+              (entry.era || '') + ' · 文化解码' +
+            '</p>' +
+          '</div>';
+      }
+    }
+
+    function cultureImgSrc(id, typeOrNum) {
+      console.log('当前详情数据ID:', id);
+      console.log('当前imageId:', id);
+      console.log('ImageAssets是否可用:', typeof ImageAssets !== 'undefined');
+      
+      if (typeof ImageAssets !== 'undefined') {
+        // 如果是字符串类型（如 'cover', 'banner'），使用 getCultureImage
+        if (typeof typeOrNum === 'string') {
+          var src = ImageAssets.getCultureImage(id, typeOrNum);
+          console.log('当前图片资源(按类型):', src);
+          return src;
+        }
+        // 如果是数字类型，使用 getCultureImageByNum（正文图片）
+        if (ImageAssets.getCultureImageByNum) {
+          var src = ImageAssets.getCultureImageByNum(id, typeOrNum);
+          console.log('当前图片资源(按序号):', src);
+          return src;
+        }
+      }
+      return 'images/common/placeholder.svg';
+    }
+    function imgSlotHTML(ratio, src, label) {
+      ratio = ratio || 'r16x9';
+      console.log('imgSlotHTML - 生成图片标签:', src);
+      return '<div class="img-slot ' + ratio + '">' +
+        '<img src="' + src + '" alt="' + (label||'') + '" ' +
+          'onload="console.log(\'图片加载成功:\', this.src); this.classList.add(\'loaded\')" ' +
+          'onerror="console.error(\'图片加载失败:\', this.src); this.style.display=\'none\'" ' +
+          'loading="lazy">' +
+        '<span class="img-placeholder-icon">&#x1F5BC;</span>' +
+        '<span class="img-label">' + (label||'') + '</span>' +
+      '</div>';
+    }
+
+    // 从链接中提取 ID
+    function extractIdFromLink(link) {
+      if (!link) return null;
+      // 匹配 ?id=xxx 格式
+      var match = link.match(/[?&]id=([^&]+)/);
+      if (match) return match[1];
+      // 尝试从路径中提取（如 culture-detail.html#xxx）
+      match = link.match(/#([^#]+)$/);
+      if (match) return match[1];
+      return null;
+    }
+
+    function renderSection(sec, id) {
+      switch (sec.type) {
+
+        case 'text-block':
+          var h = '<div class="detail-block">';
+          if (sec.label) h += '<span class="block-label">' + sec.label + '</span>';
+          if (sec.heading) h += '<h3>' + sec.heading + '</h3>';
+          (sec.content || []).forEach(function(p) { h += '<p>' + p + '</p>'; });
+          h += '</div>';
+          return h;
+
+        case 'full-image':
+          // 跳过图片区块，减少图片加载
+          return '';
+
+        case 'image-gallery':
+          // 跳过图片画廊，减少图片加载
+          return '';
+
+        case 'quote':
+          var qh = '<div class="detail-block quote-block cd-quote"><p class="cd-quote-text" style="font-family:var(--font-display);font-size:1.4rem;line-height:2.2;color:var(--gold);letter-spacing:0.1em;text-align:center;margin:0;">';
+          if (sec.lines) { qh += sec.lines.join('<br>'); }
+          qh += '</p>';
+          if (sec.source) qh += '<p style="color:rgba(216,211,199,0.5);font-size:0.9rem;text-align:right;margin-top:1rem;">' + sec.source + '</p>';
+          qh += '</div>';
+          return qh;
+
+        case 'info-cards':
+          var ih = '<div class="detail-block"><h3>' + (sec.title || '') + '</h3><div class="nearby-grid">';
+          (sec.cards || []).forEach(function(c) {
+            ih += '<div class="nearby-card">' +
+              '<div class="nearby-icon">' + (c.icon||'📍') + '</div>' +
+              '<div class="nearby-name">' + c.name + '</div>' +
+              '<div class="nearby-dist">' + c.dist + '</div>' +
+              '<div class="nearby-reason">' + c.reason + '</div>' +
+            '</div>';
+          });
+          ih += '</div></div>';
+          return ih;
+
+        case 'reading':
+          var rh = '<div class="detail-block"><h3>' + (sec.title || '') + '</h3><div class="reading-grid">';
+          (sec.items || []).forEach(function(r) {
+            // 从 link 中提取 id
+            var itemId = extractIdFromLink(r.link);
+            // 通过 ResourceManager 获取封面图
+            var coverImage = typeof ImageAssets !== 'undefined' && itemId 
+              ? ImageAssets.getCoverImage(itemId) 
+              : 'images/common/placeholder.svg';
+            
+            rh += '<a href="' + (r.link||'#') + '" class="reading-card" style="text-decoration:none;">' +
+              '<div class="reading-img"><div class="img-slot r16x9">' +
+                '<img src="' + coverImage + '" alt="' + r.title + '" loading="lazy" />' +
+                '<span class="img-label">' + r.title + '</span>' +
+              '</div></div>' +
+              '<div class="reading-body">' +
+                '<div class="reading-title">' + r.title + '</div>' +
+                '<div class="reading-desc">' + r.desc + '</div>' +
+                '<div class="reading-link">阅读详情 →</div>' +
+              '</div>' +
+            '</a>';
+          });
+          rh += '</div></div>';
+          return rh;
+
+        default:
+          return '';
+      }
+    }
+
+    fetch('data/culture.json')
+      .then(function(response) { return response.json(); })
+      .then(renderWithData)
+      .catch(function(error) {
+        console.log('从JSON加载失败:', error);
+        renderWithData(cultureData);
+      });
+  })();
+};
+document.head.appendChild(scriptEl);
+</script>
+<script src="js/main.js"></script>
+
+  <!-- ======== 页脚 ======== -->
+  <footer class="site-footer">
+    <div class="footer-seal">志</div>
+    <p class="footer-text">
+      长安志 · 文化解码<br>
+      解码千年文明
+    </p>
+    <p style="color:rgba(216,211,199,0.15);font-size:0.75rem;margin-top:0.5rem;font-family:var(--font-display);letter-spacing:0.1em;">
+      盛唐幻想数字展馆 &copy; 2024
+    </p>
+    
+    <!-- 素材来源声明 -->
+    <div class="source-declaration">
+      <div class="source-title">素材来源声明</div>
+      <div class="source-content">
+        <div class="source-section">
+          <span class="source-label">📷 图片素材来源：</span>
+          <span class="source-list">小红书博主@长安摄影师、@古都漫步、@丝路影像、@城墙记忆</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">📝 文字内容参考：</span>
+          <span class="source-list">《长安十二时辰》、《西安通史》、陕西历史博物馆官网、西安市文旅局</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">🏛️ 文化解码板块：</span>
+          <span class="source-list">基于《丝绸之路文化研究》、《唐长安城考古报告》整理</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">🍜 风物档案板块：</span>
+          <span class="source-list">参考《陕西美食志》、《关中民俗志》及民间传承资料</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

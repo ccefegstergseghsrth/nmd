@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="《长安志》· 探访实录 —— 游记详情，一日长安，晨午暮夜。">
+  <title>游记 · 探访实录 · 长安志</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/detail.css">
+  <script src="js/imageAssets.js"></script>
+</head>
+<body class="detail-page visit-detail">
+
+  <!-- ======== 页面过渡层 ======== -->
+  <div class="page-transition"></div>
+
+  <!-- ======== 主导航 ======== -->
+  <nav class="main-nav">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-seal">安</span>
+      长安志
+    </a>
+    <button class="nav-toggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">卷首</a></li>
+      <li><a href="culture.html">文化解码</a></li>
+      <li><a href="visit.html" class="active">探访实录</a></li>
+      <li><a href="archives.html">风物档案</a></li>
+      <li><a href="map.html">长安舆图</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== 返回按钮 ======== -->
+  <div class="section-inner">
+    <a href="visit.html" class="back-btn">← 返回探访实录</a>
+  </div>
+
+  <!-- ======== 详情页面主体 ======== -->
+  <div class="detail-page" id="detailPage">
+    <!-- Hero区域 -->
+    <section class="detail-hero" id="detailHero">
+      <!-- 动态内容由 JS 填充 -->
+    </section>
+
+    <!-- 双栏布局 -->
+    <div class="detail-layout">
+      <!-- 左侧边栏 -->
+      <aside class="detail-sidebar" id="sidebar">
+        <!-- 诗词区块 -->
+        <div class="poem-scroll" id="poemScroll">
+          <!-- 动态内容由 JS 填充 -->
+        </div>
+        
+        <!-- 时间线 -->
+        <div class="timeline" id="timeline">
+          <span class="timeline-title">行程时间轴</span>
+          <!-- 动态内容由 JS 填充 -->
+        </div>
+      </aside>
+
+      <!-- 右侧内容区 -->
+      <main class="detail-content">
+        <!-- 游记头部 -->
+        <header class="visit-journal-header" id="journalHeader">
+          <!-- 动态内容由 JS 填充 -->
+        </header>
+
+        <!-- 游记正文 -->
+        <article class="journal-body" id="journalBody">
+          <!-- 动态内容由 JS 填充 -->
+        </article>
+
+        <!-- 周边推荐 -->
+        <div class="detail-block" id="nearbySection">
+          <!-- 动态内容由 JS 填充 -->
+        </div>
+
+        <!-- 延伸阅读 -->
+        <div class="detail-block" id="readingSection">
+          <!-- 动态内容由 JS 填充 -->
+        </div>
+
+        <!-- 相关链接区域 -->
+        <div id="relatedSection">
+          <!-- 动态内容由 JS 填充 -->
+        </div>
+
+        <!-- 卷尾印章 -->
+        <div id="endSeal">
+          <!-- 动态内容由 JS 填充 -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- ======== 页脚 ======== -->
+  <footer class="site-footer">
+    <div class="footer-seal">志</div>
+    <p class="footer-text">
+      长安志 · 数字文化展馆<br>
+      以数字之笔，书长安千年
+    </p>
+    <p style="color:rgba(216,211,199,0.15);font-size:0.75rem;margin-top:0.5rem;font-family:var(--font-display);letter-spacing:0.1em;">
+      盛唐幻想数字展馆 &copy; 2024
+    </p>
+    
+    <!-- 素材来源声明 -->
+    <div class="source-declaration">
+      <div class="source-title">素材来源声明</div>
+      <div class="source-content">
+        <div class="source-section">
+          <span class="source-label">📷 图片素材来源：</span>
+          <span class="source-list">小红书博主@长安摄影师、@古都漫步、@丝路影像、@城墙记忆</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">📝 文字内容参考：</span>
+          <span class="source-list">《长安十二时辰》、《西安通史》、陕西历史博物馆官网、西安市文旅局</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">🏛️ 文化解码板块：</span>
+          <span class="source-list">基于《丝绸之路文化研究》、《唐长安城考古报告》整理</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">🍜 风物档案板块：</span>
+          <span class="source-list">参考《陕西美食志》、《关中民俗志》及民间传承资料</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">🚶 探访实录板块：</span>
+          <span class="source-list">实地走访记录、游记攻略及官方旅游指南</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================================
+       JavaScript - 游记数据与动态渲染
+       ================================================================ -->
+  <script>
+  (function() {
+
+    // ========== 游记数据 ==========
+    var journalData = {
+
+      yirichangan: {
+        id: 'yirichangan',
+        title: '一日长安',
+        shichen: '辰时',
+        subtitle: '用一日时光，走完长安千年',
+        seals: ['启程', '探访'],
+        route: ['钟楼', '回民街', '城墙', '大雁塔'],
+        poems: [
+          { era: '盛唐', lines: ['渭城朝雨浥轻尘', '客舍青青柳色新', '劝君更尽一杯酒', '西出阳关无故人'], source: '—— 王维《送元二使安西》', seal: '维' },
+          { era: '盛唐', lines: ['春风得意马蹄疾', '一日看尽长安花'], source: '—— 孟郊《登科后》', seal: '郊' }
+        ],
+        timeline: [
+          { time: '辰时', text: '钟楼晨钟，古城初醒' },
+          { time: '巳时', text: '回民街寻味，烟火人间' },
+          { time: '未时', text: '城墙漫步，触摸历史' },
+          { time: '申时', text: '大雁塔远眺，终南在望' }
+        ],
+        entries: [
+          {
+            time: '辰时 · 钟楼晨钟',
+            title: '钟楼之上，古城初醒',
+            text: '站在钟楼之上，晨光初破，钟声悠远。那一口明代的景云钟，曾为长安城报时数百年。晨曦中，四条大街从脚下向四方伸展，东大街、西大街、南大街、北大街，如棋盘般规整。远望城墙轮廓隐约浮现于薄雾之中，此刻的长安，恰如一幅刚刚展开的水墨画卷。'
+          },
+          {
+            time: '巳时 · 回民街寻味',
+            title: '穿行于青石小巷',
+            text: '穿行于回民街的青石小巷，烟火气息扑面而来。刚出炉的肉夹馍，白吉馍外酥内软，腊汁肉肥而不腻；一碗热气腾腾的羊肉泡馍，自己掰馍，细细掰碎，再浸入浓白鲜香的羊汤中。这里是丝路遗韵的活化石，千年前粟特商队的驼铃声似乎还在巷口回荡，而今日的叫卖声与油锅的滋滋声，延续着长安城从未中断的市井烟火。'
+          },
+          {
+            time: '未时 · 城墙漫步',
+            title: '六百年城砖的温度',
+            text: '午后阳光洒在六百年的城砖上，温暖而厚重。从永宁门登上城墙，每一块城砖都刻着烧制的年代与工匠的姓名——这是明代洪武年间留下的"实名制"印记。漫步城垣之上，内侧是古城区的青砖灰瓦，外侧是现代西安的高楼林立，古今在此仅一墙之隔。城墙周长十三点七四公里，是中国现存规模最大、保存最完整的古代城垣，被誉为"世界上保存最完整的古代军事防御体系"。'
+          },
+          {
+            time: '申时 · 大雁塔远眺',
+            title: '登上大雁塔，远眺终南',
+            text: '登上大雁塔，远眺终南山色，长安城尽收眼底。这座始建于唐永徽三年的大雁塔，是玄奘法师为保存从西域带回的经卷佛像而主持修建的。塔身七层，高六十四米，砖仿木结构，简洁而庄严。塔内存有珍贵的贝叶经与佛像。夕阳西下时分，塔影东斜，雁塔晨钟暮鼓，千年来始终是长安城的地理与精神坐标。'
+          }
+        ],
+        nearby: [
+          { name:'钟楼', note:'起点', dist:'起点', desc:'明洪武十七年建，晨钟暮鼓，长安城的心脏与精神坐标。' },
+          { name:'大雁塔', note:'终点', dist:'终点', desc:'唐永徽三年建，玄奘法师督造，千年佛塔静立曲江之畔。' },
+          { name:'回民街', note:'美食', dist:'约 0.3km', desc:'青石小巷，丝路遗韵，最鲜活的市井烟火与清真味道。' },
+          { name:'城墙', note:'骑行', dist:'约 0.5km', desc:'十三点七四公里古城垣，中国现存最完整的古代城防体系。' }
+        ],
+        reading: [
+          { title:'城墙史话', desc:'六百年城砖诉说明清烽火，每一块砖都刻着岁月的印记。', link:'culture-detail.html?id=chengqiang' },
+          { title:'永兴坊见闻', desc:'坊间百味，摔碗酒与biangbiang面的长安烟火江湖。', link:'visit-detail.html?id=yongxingfang' },
+          { title:'丝绸长安', desc:'驼铃声声，从长安出发的商贸之路连接东西方千年文明。', link:'culture-detail.html?id=silu' }
+        ],
+        related: [
+          { text: '城墙史话', href: 'culture-detail.html?id=chengqiang' },
+          { text: '丝路长安', href: 'culture-detail.html?id=silu' },
+          { text: '永兴坊见闻', href: 'visit-detail.html?id=yongxingfang' }
+        ],
+        endTitle: '一日长安 · 终'
+      },
+
+      chengqiangyeqi: {
+        id: 'chengqiangyeqi',
+        title: '城墙夜骑',
+        shichen: '酉时',
+        subtitle: '骑行城墙，以风为马',
+        seals: ['骑行', '夜探'],
+        route: ['南门', '西门', '北门', '东门'],
+        poems: [
+          { era: '盛唐', lines: ['秦时明月汉时关', '万里长征人未还'], source: '—— 王昌龄《出塞》', seal: '龄' },
+          { era: '盛唐', lines: ['城阙辅三秦', '风烟望五津'], source: '—— 王勃《送杜少府之任蜀州》', seal: '勃' }
+        ],
+        timeline: [
+          { time: '酉时', text: '南门出发，金色余晖' },
+          { time: '戌时', text: '西门月色，古城剪影' },
+          { time: '亥时', text: '北门夜风，灯笼摇曳' },
+          { time: '归程', text: '绕城一周，十三公里' }
+        ],
+        entries: [
+          {
+            time: '酉时 · 南门出发',
+            title: '永宁门下，金色余晖',
+            text: '夕阳西下，从永宁门登上城墙，金色的余晖洒满城垣。永宁门是西安城墙的正南门，也是保存最完整的一座城门，由闸楼、箭楼、正楼三层建筑组成。傍晚的阳光在琉璃瓦上镀上最后一抹金黄，租一辆单车，从南门出发，顺时针绕城一周——十三公里的古老城垣，即将在车轮下展开。'
+          },
+          {
+            time: '戌时 · 西门月色',
+            title: '安定门上，明月升起',
+            text: '骑行至安定门，明月从城楼后冉冉升起，古今交映。安定门是城墙的西门，城楼飞檐翘角，在月色中更显庄重。城墙上每隔一百二十米便有一座敌台，共九十八座，台上建有敌楼，既可瞭望又可屯兵。骑行其间，仿佛穿越回到那个烽火连天的年代。而城墙下的环城公园里，市民散步、跳舞、唱秦腔，古今生活在此自然交融。'
+          },
+          {
+            time: '亥时 · 北门夜风',
+            title: '灯笼亮起，夜空渐深',
+            text: '夜风轻拂，城墙上的红灯笼依次亮起，长安城的夜空渐深。安远门外的灯火与城内的静谧形成鲜明对比。城墙上每隔一段距离就有一串红灯笼，在夜风中轻轻摇曳，光影斑驳地投在古老的城砖上。远处钟楼的轮廓在夜色中若隐若现，近处护城河的水面上倒映着城墙与灯火——这座六百年历史的古城垣，在夜色中显露出别样的温柔。'
+          },
+          {
+            time: '归程 · 灯火长安',
+            title: '绕城一周，十三公里',
+            text: '绕城一周，十三公里，看尽了长安的古今。回到南门时，已近子夜。回首望去，城墙如一条墨色的巨龙盘踞在城市的中央，灯火为其勾勒出清晰的轮廓。骑行一圈不过一个时辰，却仿佛穿越了六百年的光阴。从明朝初年的夯土城墙，到今日车水马龙的城市中轴，这座城墙见证了太多历史的更迭，却始终屹立不倒，守护着这座古老的城市。'
+          }
+        ],
+        nearby: [
+          { name:'南门', note:'起点', dist:'起点', desc:'永宁门，城墙正南门，闸楼箭楼正楼三层建筑，气势恢宏。' },
+          { name:'西门', note:'途经', dist:'约 3.5km', desc:'安定门，飞檐翘角，月色下更显庄重典雅之姿。' },
+          { name:'钟楼', note:'地标', dist:'约 0.8km', desc:'四条大街交汇处，登楼可观四方，长安城的地理核心。' },
+          { name:'鼓楼', note:'地标', dist:'约 1.0km', desc:'与钟楼相望，鼓声报暮，六百年来与钟楼共守长安时光。' }
+        ],
+        reading: [
+          { title:'城墙史话', desc:'六百年城砖诉说明清烽火，每一块砖都刻着岁月的印记。', link:'culture-detail.html?id=chengqiang' },
+          { title:'一日长安', desc:'一日之内走完千年，从钟楼晨钟到大雁塔晚照。', link:'visit-detail.html?id=yirichangan' },
+          { title:'音乐喷泉之夜', desc:'大雁塔北广场，水柱随盛唐乐舞起舞，光影幻梦。', link:'visit-detail.html?id=yinyuepenquan' }
+        ],
+        related: [
+          { text: '城墙史话', href: 'culture-detail.html?id=chengqiang' },
+          { text: '一日长安', href: 'visit-detail.html?id=yirichangan' },
+          { text: '音乐喷泉之夜', href: 'visit-detail.html?id=yinyuepenquan' }
+        ],
+        endTitle: '城墙夜骑 · 终'
+      },
+
+      yongxingfang: {
+        id: 'yongxingfang',
+        title: '永兴坊见闻',
+        shichen: '午时',
+        subtitle: '坊间百味，长安烟火气',
+        seals: ['寻味', '见闻'],
+        route: ['永兴坊牌楼', '美食街', '非遗工坊', '戏台'],
+        poems: [
+          { era: '中唐', lines: ['胡麻饼样学京都', '面脆油香新出炉'], source: '—— 白居易《寄胡饼与杨万州》', seal: '白' },
+          { era: '晚唐', lines: ['九天阊阖开宫殿', '万国衣冠拜冕旒'], source: '—— 王维《和贾舍人早朝大明宫之作》', seal: '维' }
+        ],
+        timeline: [
+          { time: '午时', text: '坊门初入，仿唐穿越' },
+          { time: '午时', text: '饕餮江湖，摔碗豪情' },
+          { time: '午后', text: '匠心传承，非遗技艺' },
+          { time: '午后', text: '秦腔吼声，八百里秦川' }
+        ],
+        entries: [
+          {
+            time: '午时 · 坊门初入',
+            title: '仿唐建筑群中的穿越感',
+            text: '永兴坊的牌楼下，仿唐建筑群在阳光下熠熠生辉，仿佛穿越千年。永兴坊原为唐代长安城一百零八坊之一，位于皇城东侧第二街，是当时达官显贵居住的里坊。如今的永兴坊在原址附近重建，以唐风建筑为主，青砖灰瓦、飞檐翘角，汇集了陕西各地非遗美食与手工艺。踏入牌楼，就像翻开了一部立体的长安市井生活画卷。'
+          },
+          {
+            time: '午时 · 饕餮江湖',
+            title: '摔碗酒与三秦味道',
+            text: '摔碗酒的豪情、biangbiang面的筋道、葫芦鸡的酥香——这里是一场三秦美食的江湖盛宴。摔碗酒是陕南岚皋的待客习俗，饮尽一碗桂花米酒后，将陶碗用力摔在地上，"碎碎平安"的吉利话在坊间此起彼伏。biangbiang面是陕西八大怪之一，"面条像裤带"，师傅在案板上摔打面团的声响震天，一碗油泼辣子浇上去，香气四溢。而葫芦鸡始于唐代，外酥里嫩，筷子一夹便骨肉分离，是唐玄宗时期流传下来的宫廷名菜。'
+          },
+          {
+            time: '午后 · 匠心传承',
+            title: '指尖翻飞的千年技艺',
+            text: '剪纸艺人手中的红纸翻飞，皮影戏台前的锣鼓响起。永兴坊不仅有美食，更是非遗手工艺的聚集地。陕北剪纸传承人用一把剪刀在红纸上走出千变万化的图案——窗花、生肖、祥云、福字，每一幅都承载着黄土地上人们对美好生活的祈愿。皮影戏则在白幕之后上演，牛皮雕刻的人物在灯光下栩栩如生，老艺人一边操纵影人，一边唱起高亢的碗碗腔，讲述着古老的历史传说。'
+          },
+          {
+            time: '午后 · 秦腔吼声',
+            title: '八百里秦川的豪迈',
+            text: '戏台上秦腔高亢，那一嗓子吼出了八百里秦川的豪迈。秦腔是中国最古老的戏曲剧种之一，起源于西周，成熟于明代，被称为"百戏之祖"。其唱腔粗犷豪放，以吼为主，是秦人性格最直接的表达。台上的演员画着浓墨重彩的脸谱，一板一眼间，演绎着忠孝节义的故事；台下的观众或坐或站，看得入迷，时不时爆发出喝彩声。在永兴坊的戏台下，秦腔不再是一门古老的艺术，而是流淌在长安人血液里的乡音。'
+          }
+        ],
+        nearby: [
+          { name:'永兴坊', note:'所在', dist:'所在', desc:'唐代一百零八坊之一，今日非遗美食非遗手工艺的汇聚地。' },
+          { name:'钟楼', note:'地标', dist:'约 1.2km', desc:'明洪武十七年建，四条大街交汇处，长安城的心脏地带。' },
+          { name:'回民街', note:'美食', dist:'约 1.5km', desc:'青石小巷烟火缭绕，肉夹馍与羊肉泡馍的正宗长安味道。' },
+          { name:'城墙', note:'骑行', dist:'约 0.8km', desc:'十三公里古城垣，登城远眺，千年古都尽收眼底。' }
+        ],
+        reading: [
+          { title:'一日长安', desc:'一日之内走完千年，从钟楼晨钟到大雁塔晚照。', link:'visit-detail.html?id=yirichangan' },
+          { title:'风物档案', desc:'长安百宝卷，美食非遗古建方言，一册览尽长安风华。', link:'archives.html' },
+          { title:'城墙夜骑', desc:'以风为马，在六百年的城垣之上，骑行穿越古今。', link:'visit-detail.html?id=chengqiangyeqi' }
+        ],
+        related: [
+          { text: '一日长安', href: 'visit-detail.html?id=yirichangan' },
+          { text: '风物档案', href: 'archives.html' },
+          { text: '城墙夜骑', href: 'visit-detail.html?id=chengqiangyeqi' }
+        ],
+        endTitle: '永兴坊见闻 · 终'
+      },
+
+      yinyuepenquan: {
+        id: 'yinyuepenquan',
+        title: '音乐喷泉之夜',
+        shichen: '戌时',
+        subtitle: '水光映天，光影幻梦',
+        seals: ['幻夜', '光影'],
+        route: ['大雁塔', '北广场', '喷泉观景台'],
+        poems: [
+          { era: '盛唐', lines: ['霓裳一曲千峰上', '舞破中原始下来'], source: '—— 杜牧《过华清宫绝句》', seal: '牧' },
+          { era: '盛唐', lines: ['云想衣裳花想容', '春风拂槛露华浓'], source: '—— 李白《清平调》', seal: '白' }
+        ],
+        timeline: [
+          { time: '戌时', text: '华灯初上，雁塔披金' },
+          { time: '戌时一刻', text: '音乐响起，水舞飞天' },
+          { time: '戌时三刻', text: '光影交织，水幕诗篇' },
+          { time: '亥时', text: '曲江不夜，震撼不散' }
+        ],
+        entries: [
+          {
+            time: '戌时 · 华灯初上',
+            title: '大雁塔披上金色灯光',
+            text: '大雁塔在夜色中披上金色灯光，巍峨庄严。夜幕降临时，大雁塔的灯光系统逐层亮起，从底层的暖黄渐变为顶层的亮白，塔身仿佛悬浮于夜空之中。北广场上人潮开始汇聚——这里即将上演亚洲最大的矩阵式音乐喷泉表演。广场两侧的唐代风格建筑群也亮起了灯火，金色的屋檐在夜色中勾勒出盛唐的轮廓。'
+          },
+          {
+            time: '戌时一刻 · 音乐响起',
+            title: '水柱如飞天起舞',
+            text: '水柱随着盛唐乐舞的旋律起伏，如飞天起舞。喷泉随着音乐节奏高低错落、左右摇摆，最高可喷射至六十米。当《霓裳羽衣曲》响起，水柱仿佛化身为唐代宫廷中的舞伎，身着华服，翩翩起舞；当《十面埋伏》的琵琶声骤然响起，水柱又如千军万马般奔腾而来。水雾弥漫，在灯光的映照下形成一道彩虹。音乐与水舞的完美结合，让人仿佛置身于千年前的大唐宫廷乐舞之中。'
+          },
+          {
+            time: '戌时三刻 · 光影交织',
+            title: '水幕上的长安诗篇',
+            text: '激光在水幕上投射出长安城的轮廓与诗篇。当喷泉表演进入高潮，水幕电影系统启动——薄如蝉翼的水幕在空中展开，激光投影在水幕上描绘出长安城的宫阙楼阁、丝绸之路上的驼队商旅，以及李白、杜甫的不朽诗句。"长安一片月，万户捣衣声"、"春风得意马蹄疾，一日看尽长安花"——这些流传千古的诗句在水幕上浮现，将观众带入那个诗酒年华的盛唐时代。'
+          },
+          {
+            time: '亥时 · 曲江不夜',
+            title: '音乐渐息，震撼不散',
+            text: '音乐渐息，人群散去，但那份震撼久久不散。喷泉演出结束后，大雁塔北广场恢复了夜的宁静，但广场上的灯光依然明亮。回望大雁塔，在夜空中静静矗立，仿佛一个沉默的守望者，注视着脚下这座千年古城的新篇章。大唐不夜城的灯火在不远处闪烁，曲江池的水面上映着点点星光。这一刻，古老与现代、静谧与繁华，在这片土地上完成了最温柔的对话。'
+          }
+        ],
+        nearby: [
+          { name:'大雁塔', note:'所在', dist:'所在', desc:'唐永徽三年建，玄奘督造，千年佛塔与音乐喷泉交相辉映。' },
+          { name:'大唐不夜城', note:'夜游', dist:'约 0.5km', desc:'火树银花合，星桥铁锁开，盛唐上元夜盛景的重现。' },
+          { name:'大唐芙蓉园', note:'园林', dist:'约 1.5km', desc:'仿唐皇家园林，亭台楼阁掩映于曲江池畔的波光之中。' },
+          { name:'陕西历史博物馆', note:'文博', dist:'约 2.0km', desc:'古都明珠华夏宝库，三十七万件文物诉说千年文明。' }
+        ],
+        reading: [
+          { title:'大唐不夜城', desc:'夜幕降临曲江之畔华灯初上，盛唐文化融合现代光影。', link:'culture-detail.html?id=datangbuyecheng' },
+          { title:'城墙夜骑', desc:'以风为马，在六百年城垣之上，骑行穿越古今。', link:'visit-detail.html?id=chengqiangyeqi' },
+          { title:'曲江遗梦', desc:'曲江池畔千年风流，大唐芙蓉园中的盛唐遗韵。', link:'culture-detail.html?id=qujiang' }
+        ],
+        related: [
+          { text: '大唐不夜城', href: 'culture-detail.html?id=datangbuyecheng' },
+          { text: '城墙夜骑', href: 'visit-detail.html?id=chengqiangyeqi' },
+          { text: '曲江遗梦', href: 'culture-detail.html?id=qujiang' }
+        ],
+        endTitle: '音乐喷泉之夜 · 终'
+      },
+
+      shiershichen: {
+        id: 'shiershichen',
+        title: '十二时辰漫游',
+        shichen: '子时到亥时',
+        subtitle: '十二时辰，看尽长安花',
+        seals: ['漫游', '全时'],
+        route: ['全天循环漫游'],
+        poems: [
+          { era: '盛唐', lines: ['十二街如种菜畦', '千百家似围棋局'], source: '—— 白居易《登观音台望城》', seal: '白' },
+          { era: '中唐', lines: ['长安一片月', '万户捣衣声'], source: '—— 李白《子夜吴歌》', seal: '白' }
+        ],
+        timeline: [
+          { time: '子时', text: '深夜回民街，烟火不熄' },
+          { time: '卯时', text: '城墙日出，古城苏醒' },
+          { time: '午时', text: '博物馆探秘，千年密语' },
+          { time: '酉时', text: '钟楼晚照，长安不老' }
+        ],
+        entries: [
+          {
+            time: '子时 · 深夜回民街',
+            title: '凌晨的烟火人间',
+            text: '凌晨的回民街依然有灯火，烤肉摊前烟雾缭绕。子时的长安并未沉睡——回民街的夜市正是最热闹的时候。红柳烤肉在炭火上滋滋作响，羊肉串的香气混合着孜然与辣椒的辛香弥漫在巷弄之中；烤包子在馕坑中烤得金黄酥脆；一碗热气腾腾的粉蒸肉，软糯鲜香，是深夜老饕们的最爱。白天的游客渐渐散去，深夜的回民街更多了几分本地人的自在与惬意，这里的人间烟火从未停歇。'
+          },
+          {
+            time: '卯时 · 城墙日出',
+            title: '破晓时分，日照古城',
+            text: '破晓时分登上城墙，看太阳从东方升起，照亮古城。卯时的长安是最安静的，整座城市还在薄雾中沉睡。站在城墙之上，东方天际渐渐泛起鱼肚白，继而霞光万道，金红色的阳光越过东门城楼，一寸一寸地洒在六百年的城砖上。护城河的水面泛起粼粼金光，晨练的老人开始在城墙上散步、打太极。这座古城在晨曦中缓缓苏醒——日出而作，千年如一日。'
+          },
+          {
+            time: '午时 · 博物馆探秘',
+            title: '文物中的千年密语',
+            text: '陕西历史博物馆里，文物静静诉说着千年的故事。这座被誉为"古都明珠，华夏宝库"的博物馆，收藏着从蓝田猿人到周秦汉唐的三十七万余件文物。商周青铜器上的饕餮纹狰狞而庄严，秦兵马俑的陶土依然散发着两千年前的气息，汉代的鎏金银竹节铜熏炉精妙绝伦，唐代的金银器皿上錾刻着西域传来的葡萄藤蔓与胡人乐舞。每一件文物都是一个时代的切片，沉默却有力地讲述着这片土地上的兴衰更迭。'
+          },
+          {
+            time: '酉时 · 钟楼晚照',
+            title: '一日将尽，长安不老',
+            text: '夕阳在钟楼的琉璃瓦上镀上金光，一日将尽，长安不老。酉时的钟楼是长安城最美的时刻——落日余晖从西面斜射过来，钟楼的飞檐翘角被镀上一层温暖的金色。这座始建于明洪武十七年的建筑，坐落在四条大街的交汇处，六百余年来始终是长安城的心脏。站在钟楼之下，望着夕阳缓缓沉入城墙之后，天空从金黄渐变为绯红再转为深蓝——十二时辰的轮回在此刻完成，但长安的故事从未终结。'
+          }
+        ],
+        nearby: [
+          { name:'回民街', note:'夜市', dist:'约 0.3km', desc:'深夜烟火不熄，红柳烤肉与粉蒸肉的最地道长安夜宵。' },
+          { name:'城墙', note:'日出', dist:'约 0.5km', desc:'卯时登城，看霞光万道，古城在晨曦中缓缓苏醒。' },
+          { name:'陕西历史博物馆', note:'文博', dist:'约 3.0km', desc:'古都明珠华夏宝库，三十七万件文物诉说千年文明。' },
+          { name:'钟楼', note:'晚照', dist:'约 0.3km', desc:'酉时余晖，琉璃瓦上镀满金辉，长安最美的黄昏时刻。' }
+        ],
+        reading: [
+          { title:'一日长安', desc:'一日之内走完千年，从钟楼晨钟到大雁塔晚照。', link:'visit-detail.html?id=yirichangan' },
+          { title:'城墙夜骑', desc:'以风为马，在六百年城垣之上，骑行穿越古今。', link:'visit-detail.html?id=chengqiangyeqi' },
+          { title:'永兴坊见闻', desc:'坊间百味，摔碗酒与biangbiang面的长安烟火江湖。', link:'visit-detail.html?id=yongxingfang' }
+        ],
+        related: [
+          { text: '一日长安', href: 'visit-detail.html?id=yirichangan' },
+          { text: '城墙夜骑', href: 'visit-detail.html?id=chengqiangyeqi' },
+          { text: '永兴坊见闻', href: 'visit-detail.html?id=yongxingfang' }
+        ],
+        endTitle: '十二时辰漫游 · 终'
+      },
+
+      // ===== 陕西历史博物馆探访 =====
+      shaanxibowuguan: {
+        id: 'shaanxibowuguan',
+        title: '陕西历史博物馆',
+        shichen: '未时',
+        subtitle: '穿越千年的文物之旅',
+        seals: ['文博', '探秘'],
+        route: ['陕西历史博物馆'],
+        poems: [
+          { era: '盛唐', lines: ['九天阊阖开宫殿', '万国衣冠拜冕旒'], source: '—— 王维《和贾舍人早朝大明宫之作》', seal: '维' },
+          { era: '现代', lines: ['周鼎秦钟汉瓦当', '唐瓷宋玉尽珍藏'], source: '—— 咏陕历博', seal: '博' }
+        ],
+        timeline: [
+          { time: '未时', text: '踏入华夏宝库' },
+          { time: '未时一刻', text: '周秦汉唐展厅' },
+          { time: '未时二刻', text: '珍宝馆探秘' },
+          { time: '申时', text: '壁画馆沉浸' }
+        ],
+        entries: [
+          {
+            time: '未时 · 踏入华夏宝库',
+            title: '华夏宝库，古都明珠',
+            text: '踏入陕西历史博物馆的大门，仿佛穿越时空隧道。这座被誉为"古都明珠，华夏宝库"的国家级博物馆，馆藏文物达170余万件（组），上起远古人类使用的简单石器，下至明清时期的各类器物，时间跨度长达一百多万年。建筑本身便是一件艺术品，庄重典雅的唐式建筑风格与现代化的展陈设计完美融合。'
+          },
+          {
+            time: '未时一刻 · 周秦汉唐展厅',
+            title: '周鼎秦钟，汉瓦唐瓷',
+            text: '基本陈列"陕西古代文明"分为七个部分，系统展示了陕西地区自远古到近代的历史发展脉络。商周青铜器的雄浑厚重、秦代兵马俑的威武雄壮、汉代丝绸的精美华丽、唐代金银器的璀璨夺目——每一件文物都在无声地讲述着这片土地上的千年故事。特别是唐代文物展厅，集中展示了盛唐时期的辉煌成就。'
+          },
+          {
+            time: '未时二刻 · 珍宝馆探秘',
+            title: '十八件国宝的震撼',
+            text: '珍宝馆汇聚了陕西历史博物馆最珍贵的藏品，其中十八件国宝级文物更是举世闻名。镶金兽首玛瑙杯、唐三彩骆驼载乐俑、鎏金舞马衔杯银壶、陕西古代壁画——这些稀世珍品见证了中国古代文明的巅峰时刻。每一件文物背后都有一段传奇故事，值得细细品味。'
+          },
+          {
+            time: '申时 · 壁画馆沉浸',
+            title: '千年壁画的生命延续',
+            text: '唐代壁画馆是陕历博的一大特色。这里收藏了二十多幅从唐代墓葬中出土的壁画，总面积超过1000平方米。这些壁画题材广泛，包括仪仗出行、乐舞宴饮、狩猎游骑、宫苑仕女等，生动展现了唐代的社会生活和审美风尚。通过数字化技术，这些千年壁画得以在现代展厅中焕发新生。'
+          }
+        ],
+        nearby: [
+          { name:'大雁塔', note:'地标', dist:'约 2.1km', desc:'唐永徽三年建，玄奘法师督造，千年佛塔静立曲江之畔。' },
+          { name:'小雁塔', note:'文博', dist:'约 1.5km', desc:'唐景龙年间建，西安博物院所在地，三裂三合神合奇迹。' },
+          { name:'大唐不夜城', note:'夜游', dist:'约 2.5km', desc:'盛唐文化沉浸体验，北起大雁塔南至唐城墙遗址。' },
+          { name:'赛格国际', note:'购物', dist:'约 0.5km', desc:'西安最大购物中心，亚洲最长扶梯直达云端。' }
+        ],
+        reading: [
+          { title:'一日长安', desc:'一日之内走完千年，从钟楼晨钟到大雁塔晚照。', link:'visit-detail.html?id=yirichangan' },
+          { title:'大唐不夜城', desc:'夜幕降临曲江之畔华灯初上，盛唐文化融合现代光影。', link:'culture-detail.html?id=datangbuyecheng' },
+          { title:'丝路长安', desc:'驼铃声声，从长安出发的商贸之路连接东西方千年文明。', link:'culture-detail.html?id=silu' }
+        ],
+        related: [
+          { text: '一日长安', href: 'visit-detail.html?id=yirichangan' },
+          { text: '大唐不夜城', href: 'culture-detail.html?id=datangbuyecheng' },
+          { text: '丝路长安', href: 'culture-detail.html?id=silu' }
+        ],
+        endTitle: '陕历博探秘 · 终'
+      }
+    };
+
+    // ========== 获取 URL 参数 ==========
+    function getUrlParam(name) {
+      var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURIComponent(r[2]);
+      return null;
+    }
+
+    // ========== 渲染页面 ==========
+    function renderPage() {
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get('id') || 'yirichangan';
+
+      function doRender(data) {
+        var entry = data[id] || data['yirichangan'];
+        
+        // 调试：打印数据
+        console.log('journalData[' + id + ']:', entry);
+        
+        // 数据验证：确保必要字段存在
+        if (!entry) {
+          console.error('未找到游记数据:', id);
+          return;
+        }
+        
+        // 设置默认值，防止渲染错误
+        entry.title = entry.title || '探访实录';
+        entry.shichen = entry.shichen || '辰时';
+        entry.subtitle = entry.subtitle || '长安探访';
+        entry.seals = entry.seals || ['探访'];
+        entry.route = entry.route || ['长安'];
+        entry.poems = entry.poems || [];
+        entry.timeline = entry.timeline || [];
+        entry.entries = entry.entries || [];
+        entry.nearby = entry.nearby || [];
+        entry.reading = entry.reading || [];
+        entry.related = entry.related || [];
+        entry.endTitle = entry.endTitle || '探访实录 · 终';
+
+      document.title = entry.title + ' · 探访实录 · 长安志';
+
+      // ===== 1) detail-hero =====
+      var heroEl = document.getElementById('detailHero');
+      // 直接读取 URL 参数传递的 id，与首页卡片的 data-image-id 保持一致
+      var heroImageSrc = (typeof ImageAssets !== 'undefined') ? ImageAssets.getCoverImage(id) : 'images/common/placeholder.svg';
+      
+      heroEl.innerHTML =
+        '<div class="hero-img-slot">' +
+          '<div class="img-slot r21x9">' +
+            '<img src="' + heroImageSrc + '" alt="' + entry.title + '" loading="lazy" />' +
+            '<span class="img-label">' + entry.title + ' · 全景</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="detail-hero-overlay"></div>' +
+        '<div class="detail-hero-content">' +
+          '<div class="detail-label">探访实录</div>' +
+          '<h1 class="detail-title">' + entry.title + '</h1>' +
+          '<div class="detail-subtitle">' + entry.shichen + ' · ' + entry.subtitle + '</div>' +
+        '</div>';
+
+      // ===== 2) 诗词区块 =====
+      var poemScrollEl = document.getElementById('poemScroll');
+      var poemsHtml = '';
+      entry.poems.forEach(function(poem) {
+        poemsHtml += 
+          '<div class="poem-block">' +
+            '<span class="poem-badge">' + poem.era + '</span>' +
+            '<div class="poem-lines">' +
+              poem.lines.map(function(line) { return '<p>' + line + '</p>'; }).join('') +
+            '</div>' +
+            '<p class="poem-source">' + poem.source + '</p>' +
+            '<span class="poem-seal">' + poem.seal + '</span>' +
+          '</div>';
+      });
+      poemScrollEl.innerHTML = poemsHtml;
+
+      // ===== 3) 时间线 =====
+      var timelineEl = document.getElementById('timeline');
+      var timelineHtml = '';
+      entry.timeline.forEach(function(item) {
+        timelineHtml += 
+          '<div class="timeline-item">' +
+            '<div class="timeline-dot"></div>' +
+            '<div class="timeline-content">' +
+              '<span class="timeline-time">' + item.time + '</span>' +
+              '<span class="timeline-text">' + item.text + '</span>' +
+            '</div>' +
+          '</div>';
+      });
+      timelineEl.innerHTML += timelineHtml;
+
+      // ===== 4) journal-header =====
+      var headerEl = document.getElementById('journalHeader');
+      var sealsHtml = entry.seals.map(function(s, i) {
+        return '<span class="seal large gold" style="margin:0 0.5rem;' + (i === 1 ? 'border-color:var(--cinnabar);color:var(--cinnabar);' : '') + '">' + s + '</span>';
+      }).join('');
+
+      var routeHtml = '';
+      if (entry.route.length === 1 && entry.route[0] === '全天循环漫游') {
+        routeHtml = '<div class="journal-route">' +
+          '<span class="route-dot"></span>' +
+          '<span class="route-stop">全天循环漫游</span>' +
+          '<span class="route-dot"></span>' +
+          '</div>';
+      } else {
+        routeHtml = '<div class="journal-route">';
+        entry.route.forEach(function(stop, i) {
+          routeHtml += '<span class="route-stop">' + stop + '</span>';
+          if (i < entry.route.length - 1) {
+            routeHtml += '<span class="route-line"></span><span class="route-dot"></span>';
+          }
+        });
+        routeHtml += '</div>';
+      }
+
+      headerEl.innerHTML =
+        '<div class="title-label">' + entry.shichen + ' · ' + entry.subtitle + '</div>' +
+        '<div class="gold-divider"></div>' +
+        '<div style="margin-top:1.5rem;">' + sealsHtml + '</div>' +
+        '<h1 style="color:var(--gold);font-size:clamp(2rem,5vw,3.5rem);letter-spacing:0.15em;font-family:var(--font-display);font-weight:normal;margin-top:1rem;">' + entry.title + '</h1>' +
+        routeHtml;
+
+      // ===== 5) journal-body (含图片穿插) =====
+      var bodyEl = document.getElementById('journalBody');
+      var entriesHtml = '';
+      
+      // 获取当前条目的封面图（与卡片封面共用同一张图）
+      var coverImageSrc = (typeof ImageAssets !== 'undefined') ? ImageAssets.getCoverImage(id) : 'images/common/placeholder.svg';
+      
+      entry.entries.forEach(function(item, i) {
+        entriesHtml +=
+          '<div class="journal-entry scroll-chapter">' +
+            '<div class="entry-time">' + item.time + '</div>' +
+            '<div class="entry-title">' + item.title + '</div>' +
+            '<p>' + item.text + '</p>' +
+          '</div>';
+        
+        // 在每个条目后显示封面图（最后一个条目不显示）
+        if (i < entry.entries.length - 1) {
+          entriesHtml +=
+            '<div class="detail-banner">' +
+              '<div class="img-slot r16x9">' +
+                '<img src="' + coverImageSrc + '" alt="' + entry.title + '" loading="lazy" />' +
+                '<span class="img-label">' + entry.title + '</span>' +
+              '</div>' +
+            '</div>';
+        }
+      });
+      bodyEl.innerHTML = entriesHtml;
+
+      // ===== 6) 周边推荐 =====
+      var nearbyEl = document.getElementById('nearbySection');
+      var nearbyHtml =
+        '<span class="block-label">周边去处</span>' +
+        '<h3>推荐地点</h3>' +
+        '<div class="nearby-grid">';
+      entry.nearby.forEach(function(n) {
+        nearbyHtml +=
+          '<div class="nearby-card">' +
+            '<div class="img-slot r16x9">' +
+              '<span class="img-label">' + n.name + '</span>' +
+            '</div>' +
+            '<span class="nearby-name">' + n.name + '<span style="font-size:0.65rem;color:var(--cinnabar);margin-left:0.5rem;">' + n.note + '</span></span>' +
+            '<span class="nearby-dist">' + n.dist + '</span>' +
+            '<span class="nearby-reason">' + n.desc + '</span>' +
+          '</div>';
+      });
+      nearbyHtml += '</div>';
+      nearbyEl.innerHTML = nearbyHtml;
+
+      // ===== 7) 延伸阅读 =====
+      var readingEl = document.getElementById('readingSection');
+      var readingHtml =
+        '<span class="block-label">延伸阅读</span>' +
+        '<h3>相关内容</h3>' +
+        '<div class="reading-grid">';
+      entry.reading.forEach(function(r) {
+        readingHtml +=
+          '<div class="reading-card" data-link="' + r.link + '">' +
+            '<div class="reading-img">' +
+              '<div class="img-slot r16x9">' +
+                '<span class="img-label">' + r.title + '</span>' +
+              '</div>' +
+            '</div>' +
+            '<div class="reading-body">' +
+              '<div class="reading-title">' + r.title + '</div>' +
+              '<div class="reading-desc">' + r.desc + '</div>' +
+              '<div class="reading-link">展卷阅读 →</div>' +
+            '</div>' +
+          '</div>';
+      });
+      readingHtml += '</div>';
+      readingEl.innerHTML = readingHtml;
+
+      // ===== 8) 相关链接 =====
+      var relatedEl = document.getElementById('relatedSection');
+      var relatedHtml = 
+        '<div class="gold-divider wide"></div>' +
+        '<h3 style="color:var(--gold);font-family:var(--font-display);letter-spacing:0.1em;margin:1rem 0;">相关游记</h3>' +
+        '<div style="display:flex;gap:1rem;justify-content:flex-start;flex-wrap:wrap;">';
+      entry.related.forEach(function(link) {
+        relatedHtml +=
+          '<a href="' + link.href + '" style="font-family:var(--font-display);color:var(--gold);padding:0.5rem 1.2rem;border:1px solid var(--border);letter-spacing:0.1em;font-size:0.9rem;text-decoration:none;">' +
+            link.text +
+          '</a>';
+      });
+      relatedHtml +=
+        '<a href="visit.html" style="font-family:var(--font-display);color:var(--cinnabar);padding:0.5rem 1.2rem;border:1px solid rgba(159,58,44,0.3);letter-spacing:0.1em;font-size:0.9rem;text-decoration:none;">返回探访实录</a>';
+      relatedHtml += '</div>';
+      relatedEl.innerHTML = relatedHtml;
+
+      // ===== 9) 卷尾印章 =====
+      var sealEl = document.getElementById('endSeal');
+      sealEl.innerHTML =
+        '<div class="gold-divider wide"></div>' +
+        '<div style="text-align:center;padding:2rem 0;">' +
+          '<span class="seal large gold">' + entry.endTitle + '</span>' +
+          '<p style="color:rgba(216,211,199,0.3);font-size:0.8rem;margin-top:0.5rem;font-family:var(--font-display);letter-spacing:0.15em;">' +
+            entry.shichen + ' · 探访实录' +
+          '</p>' +
+        '</div>';
+      }
+
+      fetch('data/journal.json')
+        .then(function(r){ return r.json(); })
+        .then(doRender)
+        .catch(function(){
+          doRender(journalData);
+        });
+    }
+
+    // ========== 执行渲染 ==========
+    renderPage();
+
+    // ========== 页面过渡动画 ==========
+    var transition = document.querySelector('.page-transition');
+    if (transition) {
+      transition.classList.add('active');
+      setTimeout(function() {
+        transition.classList.remove('active');
+      }, 500);
+    }
+
+    // ========== 阅读卡片点击跳转 ==========
+    document.getElementById('readingSection').addEventListener('click', function(e) {
+      var card = e.target.closest('.reading-card');
+      if (card) {
+        var link = card.getAttribute('data-link');
+        if (link) {
+          if (transition) {
+            transition.classList.add('active');
+            setTimeout(function() {
+              window.location.href = link;
+            }, 400);
+          } else {
+            window.location.href = link;
+          }
+        }
+      }
+    });
+
+    // ========== Scroll Chapter 揭示 ==========
+    var chapters = document.querySelectorAll('.scroll-chapter');
+    function revealOnScroll() {
+      var windowHeight = window.innerHeight;
+      chapters.forEach(function(ch) {
+        var rect = ch.getBoundingClientRect();
+        if (rect.top < windowHeight * 0.85 && rect.bottom > 0) {
+          ch.classList.add('revealed');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll, { passive: true });
+    revealOnScroll();
+
+  })();
+  </script>
+
+  <script src="js/imageAssets.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

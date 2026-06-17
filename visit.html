@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="《长安志》· 探访实录 —— 晨午暮夜，四时八景，漫游长安。">
+  <title>探访实录 · 长安志</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/visit.css">
+  <link rel="stylesheet" href="css/detail.css">
+  <style>
+    /* ===== 沉浸式双列时间轴样式 ===== */
+    .scroll-journal {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    
+    /* 时间节点标记 */
+    .journal-shichen {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin: 4rem 0 3rem;
+      padding: 1.5rem 0;
+    }
+    
+    .shichen-marker {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 2rem;
+      background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0.08) 100%);
+      border: 1px solid rgba(212,175,55,0.4);
+      border-radius: 3rem;
+      flex-shrink: 0;
+    }
+    
+    .shichen-icon {
+      font-size: 1.5rem;
+    }
+    
+    .shichen-text {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+    }
+    
+    .shichen-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(212,175,55,0.4) 0%, rgba(212,175,55,0.1) 50%, transparent 100%);
+    }
+    
+    /* 双列时间轴容器 */
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .timeline-row.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* 奇数行：图片在左 */
+    .timeline-row:nth-child(odd) .entry-image {
+      order: 1;
+    }
+    .timeline-row:nth-child(odd) .entry-text-block {
+      order: 2;
+    }
+    
+    /* 偶数行：图片在右 */
+    .timeline-row:nth-child(even) .entry-image {
+      order: 2;
+    }
+    .timeline-row:nth-child(even) .entry-text-block {
+      order: 1;
+    }
+    
+    /* 图片区块 */
+    .entry-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    
+    .entry-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .entry-image .img-slot {
+      width: 100%;
+      aspect-ratio: 4/3;
+    }
+    
+    .entry-image .img-slot.r4x3 {
+      aspect-ratio: 4/3;
+    }
+    
+    .entry-image .img-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .entry-image:hover .img-slot img {
+      transform: scale(1.05);
+    }
+    
+    .entry-image-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      z-index: 2;
+    }
+    
+    /* 装饰角标 */
+    .entry-image::after {
+      content: '';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-top: 2px solid var(--gold);
+      border-right: 2px solid var(--gold);
+      opacity: 0.6;
+      z-index: 2;
+    }
+    
+    /* 文字区块 */
+    .entry-text-block {
+      padding: 2rem;
+    }
+    
+    .entry-header {
+      margin-bottom: 1.5rem;
+    }
+    
+    .entry-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      color: var(--cream);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .entry-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+    }
+    
+    .entry-subtitle {
+      font-size: 0.95rem;
+      color: rgba(212,175,55,0.7);
+      letter-spacing: 0.05em;
+      margin-top: 1rem;
+    }
+    
+    /* 分隔装饰 */
+    .entry-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+    }
+    
+    .divider-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold) 0%, rgba(212,175,55,0.3) 100%);
+    }
+    
+    /* 正文区 */
+    .entry-content {
+      background: linear-gradient(135deg, rgba(30,25,18,0.7) 0%, rgba(20,15,10,0.5) 100%);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 6px;
+      padding: 1.5rem;
+      position: relative;
+    }
+    
+    .entry-content::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+    }
+    
+    .entry-text {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: rgba(216,211,199,0.9);
+      text-align: justify;
+    }
+    
+    /* 诗句引用 */
+    .entry-poem {
+      margin-top: 1.25rem;
+      padding: 1rem 1.25rem;
+      background: rgba(212,175,55,0.05);
+      border-left: 3px solid var(--gold);
+      font-family: var(--font-display);
+      color: rgba(212,175,55,0.85);
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    /* 时间轴连接线 */
+    .timeline-connector {
+      width: 2px;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(212,175,55,0.5) 0%, rgba(212,175,55,0.1) 100%);
+      margin: 0 auto 4rem;
+    }
+    
+    /* 结尾装饰 */
+    .journal-end {
+      text-align: center;
+      padding: 4rem 0 2rem;
+      margin-top: 2rem;
+    }
+    
+    .end-seal {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--gold);
+      letter-spacing: 0.3em;
+      margin-bottom: 1rem;
+    }
+    
+    .end-text {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      color: rgba(212,175,55,0.6);
+      letter-spacing: 0.2em;
+    }
+    
+    /* 响应式布局 */
+    @media (max-width: 900px) {
+      .timeline-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .timeline-row:nth-child(odd) .entry-image,
+      .timeline-row:nth-child(even) .entry-image {
+        order: 1;
+      }
+      
+      .timeline-row:nth-child(odd) .entry-text-block,
+      .timeline-row:nth-child(even) .entry-text-block {
+        order: 2;
+      }
+      
+      .entry-image .img-slot {
+        aspect-ratio: 16/9;
+      }
+      
+      .entry-text-block {
+        padding: 1.5rem 1rem;
+      }
+      
+      .journal-shichen {
+        margin: 3rem 0 2rem;
+      }
+      
+      .timeline-connector {
+        height: 40px;
+        margin-bottom: 3rem;
+      }
+    }
+  </style>
+</head>
+<body class="visit-page">
+
+  <!-- 页面过渡层 -->
+  <div class="page-transition"></div>
+
+  <!-- ======== 主导航 ======== -->
+  <nav class="main-nav">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-seal">安</span>
+      长安志
+    </a>
+    <button class="nav-toggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">卷首</a></li>
+      <li><a href="culture.html">文化解码</a></li>
+      <li><a href="visit.html" class="active">探访实录</a></li>
+      <li><a href="archives.html">风物档案</a></li>
+      <li><a href="map.html">长安舆图</a></li>
+    </ul>
+  </nav>
+
+  <!-- ======== 栏目头部 ======== -->
+  <header class="visit-header">
+    <div class="header-bg"></div>
+    <div class="header-content">
+      <div class="header-seal">访</div>
+      <h1>探访实录</h1>
+      <div class="gold-divider"></div>
+      <p class="subtitle">晨午暮夜 · 漫游长安</p>
+    </div>
+  </header>
+
+  <!-- ======== 沉浸式图文长卷 ======== -->
+  <main class="scroll-journal" id="journalScroll">
+    <!-- 内容由JS动态生成 -->
+  </main>
+
+  <!-- ======== 页脚 ======== -->
+  <footer class="site-footer">
+    <div class="footer-seal">志</div>
+    <p class="footer-text">
+      长安志 · 数字文化展馆<br>
+      以数字之笔，书长安千年
+    </p>
+    <p style="color:rgba(216,211,199,0.15);font-size:0.75rem;margin-top:0.5rem;font-family:var(--font-display);letter-spacing:0.1em;">
+      盛唐幻想数字展馆 &copy; 2024
+    </p>
+    
+    <!-- 素材来源声明 -->
+    <div class="source-declaration">
+      <div class="source-title">素材来源声明</div>
+      <div class="source-content">
+        <div class="source-section">
+          <span class="source-label">📷 图片素材来源：</span>
+          <span class="source-list">小红书博主@长安摄影师、@古都漫步、@丝路影像、@城墙记忆</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">📝 文字内容参考：</span>
+          <span class="source-list">《长安十二时辰》、《西安通史》、陕西历史博物馆官网、西安市文旅局</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">🏛️ 文化解码板块：</span>
+          <span class="source-list">基于《丝绸之路文化研究》、《唐长安城考古报告》整理</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">🍜 风物档案板块：</span>
+          <span class="source-list">参考《陕西美食志》、《关中民俗志》及民间传承资料</span>
+        </div>
+        <div class="source-section">
+          <span class="source-label">🚶 探访实录板块：</span>
+          <span class="source-list">实地走访记录、游记攻略及官方旅游指南</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/imageAssets.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // ========== 探访实录沉浸式长卷 ==========
+    (function() {
+      
+      // ========== 游记数据 ==========
+      var journalData = [
+        // 晨 · 辰时
+        {
+          shichen: { icon: '🌅', text: '晨 · 辰时', time: '05:00 — 09:00' },
+          entries: [
+            {
+              id: 'zhonglou',
+              title: '钟楼晨钟',
+              subtitle: '古城初醒，晨钟悠扬',
+              text: '站在钟楼之上，晨光初破，钟声悠远。那一口明代的景云钟，曾为长安城报时数百年。晨曦中，四条大街从脚下向四方伸展，东大街、西大街、南大街、北大街，如棋盘般规整。远望城墙轮廓隐约浮现于薄雾之中，此刻的长安，恰如一幅刚刚展开的水墨画卷。',
+              poem: '晨钟暮鼓报平安，万户千门晓色寒。'
+            },
+            {
+              id: 'paomo',
+              title: '回民街寻味',
+              subtitle: '烟火人间，市井清香',
+              text: '穿行于回民街的青石小巷，烟火气息扑面而来。刚出炉的肉夹馍，白吉馍外酥内软，腊汁肉肥而不腻；一碗热气腾腾的羊肉泡馍，自己掰馍，细细掰碎，再浸入浓白鲜香的羊汤中。这里是丝路遗韵的活化石，千年前粟特商队的驼铃声似乎还在巷口回荡，而今日的叫卖声与油锅的滋滋声，延续着长安城从未中断的市井烟火。',
+              poem: '青石小巷通幽处，烟火人间最抚心。'
+            }
+          ]
+        },
+        // 午 · 午时
+        {
+          shichen: { icon: '☀️', text: '午 · 午时', time: '11:00 — 13:00' },
+          entries: [
+            {
+              id: 'yongxingfang',
+              title: '永兴坊见闻',
+              subtitle: '坊间百味，长安烟火',
+              text: '正午时分，永兴坊青石小巷人声鼎沸。摔碗酒的豪情在此处演绎得淋漓尽致，三秦儿女的爽朗与热忱尽在一碗一摔之间。biangbiang面宽如裤带，泼上滚烫的热油，辣椒与蒜香的碰撞在口腔中绽放。非遗匠人的指尖翻飞，捏出活灵活现的面人，让传统技艺在烟火中延续。',
+              poem: '坊间百味知冷暖，摔碗声中见豪情。'
+            },
+            {
+              id: 'shanximuseum',
+              title: '陕西历史博物馆',
+              subtitle: '华夏宝库，千年珍藏',
+              text: '踏入陕西历史博物馆，仿佛穿越千年。十八件国宝级文物静静陈列，从商周的青铜饕餮到盛唐的金银器物，每一件都在无言地讲述着这片土地上的沧桑巨变。鎏金铜蚕静静躺在展柜中，诉说着丝绸之路的繁荣；唐三彩骆驼载着胡人乐师，凝固了大唐盛世的万象。',
+              poem: '周鼎汉瓦记沧桑，唐三彩中见盛唐。'
+            }
+          ]
+        },
+        // 暮 · 酉时
+        {
+          shichen: { icon: '🌇', text: '暮 · 酉时', time: '17:00 — 19:00' },
+          entries: [
+            {
+              id: 'chengqiang',
+              title: '城墙日落',
+              subtitle: '古城垣上，暮色如金',
+              text: '午后阳光洒在六百年的城砖上，温暖而厚重。从永宁门登上城墙，每一块城砖都刻着烧制的年代与工匠的姓名——这是明代洪武年间留下的"实名制"印记。漫步城垣之上，内侧是古城区的青砖灰瓦，外侧是现代西安的高楼林立，古今在此仅一墙之隔。城墙周长十三点七四公里，是中国现存规模最大、保存最完整的古代城垣。',
+              poem: '城头落日映金瓯，六百年间几度秋。'
+            },
+            {
+              id: 'dayanta',
+              title: '大雁塔远眺',
+              subtitle: '千年佛塔，终南在望',
+              text: '登上大雁塔，远眺终南山色，长安城尽收眼底。这座始建于唐永徽三年的大雁塔，是玄奘法师为保存从西域带回的经卷佛像而主持修建的。塔身七层，高六十四米，砖仿木结构，简洁而庄严。夕阳西下时分，塔影东斜，雁塔晨钟暮鼓，千年来始终是长安城的地理与精神坐标。',
+              poem: '雁塔凌霄接白云，玄奘译经照古今。'
+            }
+          ]
+        },
+        // 夜 · 戌时
+        {
+          shichen: { icon: '🌙', text: '夜 · 戌时', time: '19:00 — 21:00' },
+          entries: [
+            {
+              id: 'fountain',
+              title: '音乐喷泉',
+              subtitle: '光影交织，水舞翩翩',
+              text: '华灯初上，大雁塔北广场化身光影海洋。亚洲最大的音乐喷泉随盛唐乐舞旋律起舞，水柱高达百米，在激光与灯光的交织中勾勒出长安的诗篇。玄奘译经的故事在水雾中若隐若现，千年时光在光影中悄然融化，游人如织，却都被这一刻的壮观所震撼。',
+              poem: '喷泉起舞映华灯，水幕光影画长安。'
+            },
+            {
+              id: 'datangbuyecheng',
+              title: '大唐不夜城',
+              subtitle: '灯火如昼，盛世长安',
+              text: '夜渐深，大唐不夜城灯火璀璨如昼。玄奘法师的铜像在灯光下庄严肃穆，贞观、开元等雕塑群依次排开，展示着盛唐的万千气象。霓裳羽衣舞在街头上演，不倒翁小姐姐轻盈旋转，与游客热情互动。恍惚间，仿佛穿越回了那个万国来朝、天下一家的盛唐时代。',
+              poem: '灯火万家照不夜，霓裳羽衣舞盛世。'
+            },
+            {
+              id: 'shiershichen',
+              title: '十二时辰夜游',
+              subtitle: '日升月落，时光流转',
+              text: '从卯时的晨钟到酉时的晚照，长安城有着属于自己的十二时辰节奏。清晨的钟声唤醒古城，午后的阳光洒满青石板路，傍晚的城墙披上金色余晖，夜晚的灯火点亮万家灯火。跟随这古老的时辰节奏，漫步长安，感受这座城市日复一日、年复一年的时光流转。',
+              poem: '十二时辰皆有韵，日升月落总关情。'
+            }
+          ]
+        }
+      ];
+
+      // ========== 获取图片路径 ==========
+      function getImageSrc(id) {
+        if (typeof ImageAssets !== 'undefined' && ImageAssets.getCoverImage) {
+          return ImageAssets.getCoverImage(id);
+        }
+        return 'images/common/placeholder.svg';
+      }
+
+      // ========== 生成长卷HTML ==========
+      function generateJournalHTML() {
+        var html = '';
+        var entryIndex = 0;
+        
+        journalData.forEach(function(phase, phaseIndex) {
+          // 时间节点标记
+          html += '<div class="journal-shichen">' +
+            '<div class="shichen-marker">' +
+              '<span class="shichen-icon">' + phase.shichen.icon + '</span>' +
+              '<span class="shichen-text">' + phase.shichen.text + '</span>' +
+            '</div>' +
+            '<div class="shichen-line"></div>' +
+          '</div>';
+          
+          // 文章条目（双列交错布局）
+          phase.entries.forEach(function(entry) {
+            entryIndex++;
+            html += '<div class="timeline-row" data-index="' + entryIndex + '">';
+            
+            // 图片区块
+            var imageSrc = getImageSrc(entry.id);
+            html += '<div class="entry-image">' +
+              '<div class="img-slot r4x3">' +
+                '<img src="' + imageSrc + '" alt="' + entry.title + '" loading="lazy" />' +
+              '</div>' +
+              '<span class="entry-image-label">' + entry.title + ' · 全景</span>' +
+            '</div>';
+            
+            // 文字区块
+            html += '<div class="entry-text-block">' +
+              '<div class="entry-header">' +
+                '<h2 class="entry-title">' + entry.title + '</h2>' +
+                '<p class="entry-subtitle">' + entry.subtitle + '</p>' +
+              '</div>' +
+              '<div class="entry-divider">' +
+                '<div class="divider-dot"></div>' +
+                '<div class="divider-line"></div>' +
+              '</div>' +
+              '<div class="entry-content">' +
+                '<p class="entry-text">' + entry.text + '</p>' +
+                (entry.poem ? '<blockquote class="entry-poem">' + entry.poem + '</blockquote>' : '') +
+              '</div>' +
+            '</div>';
+            
+            html += '</div>';
+            
+            // 时间轴连接线（每个条目后添加，除了最后一个）
+            if (phaseIndex < journalData.length - 1 || phase.entries.indexOf(entry) < phase.entries.length - 1) {
+              html += '<div class="timeline-connector"></div>';
+            }
+          });
+        });
+        
+        // 结尾装饰
+        html += '<div class="journal-end">' +
+          '<div class="end-seal">游</div>' +
+          '<div class="end-text">晨午暮夜 · 漫游长安</div>' +
+        '</div>';
+        
+        return html;
+      }
+
+      // ========== 滚动动画 ==========
+      function initScrollAnimation() {
+        var rows = document.querySelectorAll('.timeline-row');
+        
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, {
+          threshold: 0.15,
+          rootMargin: '0px 0px -50px 0px'
+        });
+        
+        rows.forEach(function(row) {
+          observer.observe(row);
+        });
+      }
+
+      // ========== 初始化 ==========
+      function init() {
+        var container = document.getElementById('journalScroll');
+        if (container) {
+          container.innerHTML = generateJournalHTML();
+          // 等待DOM渲染完成后初始化动画
+          setTimeout(initScrollAnimation, 100);
+        }
+      }
+
+      init();
+
+    })();
+  </script>
+</body>
+</html>

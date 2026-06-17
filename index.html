@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长安志 v3 · 卷首</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="index-page homepage">
+
+    <!-- ========== 全局星空背景 ========== -->
+    <canvas class="page-stars"></canvas>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="main-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="brand-seal">安</span>
+            长安志
+        </a>
+        <button class="nav-toggle" aria-label="菜单">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">卷首</a></li>
+            <li><a href="culture.html">文化解码</a></li>
+            <li><a href="visit.html">探访实录</a></li>
+            <li><a href="archives.html">风物档案</a></li>
+            <li><a href="map.html">长安舆图</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- ========== HERO SECTION ========== -->
+  <section class="hero">
+    <canvas class="hero-stars"></canvas>
+    <div class="hero-skyline">
+      <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg">
+        <g class="skyline-path" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- 城墙基础 -->
+          <path d="M0,380 L50,380 L50,360 L70,360 L70,380 L90,380 L90,360 L110,360 L110,380 L130,380 L130,360 L150,360 L150,380 L170,380 L170,360 L190,360 L190,380 L210,380 L210,360 L230,360 L230,380 L250,380 L250,360 L270,360 L270,380 L290,380 L290,360 L310,360 L310,380 L330,380 L330,360 L350,360 L350,380 L370,380 L370,360 L390,360 L390,380 L410,380 L410,360 L430,360 L430,380 L450,380 L450,360 L470,360 L470,380 L490,380 L490,360 L510,360 L510,380 L530,380 L530,360 L550,360 L550,380 L570,380 L570,360 L590,360 L590,380 L610,380 L610,360 L630,360 L630,380 L650,380 L650,360 L670,360 L670,380 L690,380 L690,360 L710,360 L710,380 L730,380 L730,360 L750,360 L750,380 L770,380 L770,360 L790,360 L790,380 L810,380 L810,360 L830,360 L830,380 L850,380 L850,360 L870,360 L870,380 L890,380 L890,360 L910,360 L910,380 L930,380 L930,360 L950,360 L950,380 L970,380 L970,360 L990,360 L990,380 L1010,380 L1010,360 L1030,360 L1030,380 L1050,380 L1050,360 L1070,360 L1070,380 L1090,380 L1090,360 L1110,360 L1110,380 L1130,380 L1130,360 L1150,360 L1150,380 L1200,380"/>
+          
+          <!-- 小雁塔 (左侧) -->
+          <path d="M180,380 L160,380 L160,300 L150,300 L150,280 L140,280 L140,260 L130,260 L130,240 L155,240 L155,220 L180,220 L180,240 L205,240 L205,260 L195,260 L195,280 L185,280 L185,300 L175,300 L175,380"/>
+          <path d="M130,260 L120,250 L130,240 L205,240 L215,250 L205,260"/>
+          <path d="M130,280 L120,270 L130,260 L205,260 L215,270 L205,280"/>
+          <path d="M130,300 L120,290 L130,280 L205,280 L215,290 L205,300"/>
+          
+          <!-- 宫殿飞檐1 -->
+          <path d="M320,380 L300,380 L300,320 L290,320 L290,310 L270,310 L270,290 L260,290 L260,270 L290,260 L320,270 L350,260 L380,270 L380,290 L370,290 L370,310 L350,310 L350,320 L340,320 L340,380"/>
+          <path d="M260,290 L240,290 L240,300 L260,290 M380,290 L400,290 L400,300 L380,290"/>
+          
+          <!-- 大雁塔 (中间偏左) -->
+          <path d="M500,380 L460,380 L460,280 L450,280 L450,250 L440,250 L440,220 L430,220 L430,190 L420,190 L420,160 L460,160 L460,140 L500,140 L500,160 L540,160 L540,190 L530,190 L530,220 L520,220 L520,250 L510,250 L510,280 L500,280 L500,380"/>
+          <!-- 大雁塔飞檐 -->
+          <path d="M420,190 L400,180 L420,170 L540,170 L560,180 L540,190"/>
+          <path d="M430,220 L410,210 L430,200 L530,200 L550,210 L530,220"/>
+          <path d="M440,250 L420,240 L440,230 L520,230 L540,240 L520,250"/>
+          <path d="M450,280 L430,270 L450,260 L510,260 L530,270 L510,280"/>
+          <!-- 大雁塔塔刹 -->
+          <path d="M500,140 L500,120 L495,115 L500,110 L505,115 L500,120"/>
+          
+          <!-- 钟楼 (中间) -->
+          <path d="M700,380 L660,380 L660,320 L650,320 L650,280 L630,280 L630,260 L670,260 L670,240 L700,240 L700,220 L730,240 L730,260 L770,260 L770,280 L750,280 L750,320 L740,320 L740,380"/>
+          <!-- 钟楼飞檐 -->
+          <path d="M630,280 L610,270 L630,260 L770,260 L790,270 L770,280"/>
+          <path d="M650,320 L630,310 L650,300 L750,300 L770,310 L750,320"/>
+          
+          <!-- 鼓楼 (中间偏右) -->
+          <path d="M880,380 L840,380 L840,330 L830,330 L830,290 L810,290 L810,270 L810,250 L850,250 L850,230 L880,230 L880,210 L910,230 L910,250 L950,250 L950,270 L950,290 L930,290 L930,330 L920,330 L920,380"/>
+          <!-- 鼓楼飞檐 -->
+          <path d="M810,290 L790,280 L810,270 L950,270 L970,280 L950,290"/>
+          <path d="M830,330 L810,320 L830,310 L930,310 L950,320 L930,330"/>
+          
+          <!-- 宫殿飞檐2 -->
+          <path d="M1050,380 L1020,380 L1020,340 L1010,340 L1010,330 L990,330 L990,310 L980,310 L980,290 L1010,280 L1050,290 L1090,280 L1120,290 L1120,310 L1110,310 L1110,330 L1090,330 L1090,340 L1080,340 L1080,380"/>
+          <path d="M980,310 L960,310 L960,320 L980,310 M1120,310 L1140,310 L1140,320 L1120,310"/>
+        </g>
+      </svg>
+    </div>
+    <div class="hero-lanterns"></div>
+    <div class="hero-content-v3">
+      <div class="hero-title-wrapper">
+        <h1 class="hero-title-v3">
+          <span class="title-char">长</span>
+          <span class="title-char">安</span>
+          <span class="title-char">志</span>
+        </h1>
+      </div>
+      <div class="hero-sub-wrapper">
+        <div class="hero-divider-v3"></div>
+        <p class="hero-sub-v3">循千年古都脉络</p>
+        <p class="hero-sub-v2">探盛唐文明遗韵</p>
+        <a href="#yutu" class="hero-btn">开启探索</a>
+      </div>
+    </div>
+  </section>
+
+    <!-- ========== SECTION 1 · 印象长安 ========== -->
+    <section class="scroll-section" id="yinxiang">
+        <div class="scroll-body">
+            <div class="section-header">
+                <p class="en-subtitle">IMPRESSION · CHANG'AN</p>
+                <h2>印象长安</h2>
+                <div class="gold-divider"></div>
+                <span class="seal">开卷有益</span>
+            </div>
+            <div class="ancient-border">
+                <p>长安，十三朝古都，华夏文明的重要发祥地。自西周建都丰镐，至隋唐盛世，长安城以八十四平方公里的宏大规模，成为当时世界上最大的都市。唐长安城由宫城、皇城、外郭城三重城垣构成，布局严整，中轴对称，里坊如棋盘般规整排布，堪称中国古代都城规划的典范之作。</p>
+                <p>作为丝绸之路的东方起点，长安汇聚了来自世界各地的商旅、使节与学者。胡风汉韵在此交融，佛寺道观遍布城中，诗词歌赋传唱巷陌。大雁塔耸立城南，见证玄奘译经的岁月；小雁塔历经地震而岿然不动；钟鼓二楼晨钟暮鼓，诉说着千年不变的时光节律。今日西安，依然在这片厚重的土地上，续写着长安的不朽传奇。</p>
+            </div>
+            <div class="seal seal-bottom-right">阅</div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 2 · 文化解码 ========== -->
+    <section class="scroll-section" id="wenhua">
+        <div class="scroll-body">
+            <div class="section-header">
+                <p class="en-subtitle" style="color:rgba(212,168,90,0.8);">CULTURAL DECODING</p>
+                <h2 style="color:#d4a85a;">文化解码</h2>
+                <div class="gold-divider"></div>
+            </div>
+
+            <div class="preview-grid" style="display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;">
+                <!-- Card 1: 大唐不夜城 -->
+                <div class="magazine-card" data-link="culture.html" data-id="culture-card-datang">
+                    <div class="mc-img">
+                        <div class="img-slot r16x9">
+                            <img src="images/common/placeholder.svg" alt="大唐不夜城" data-image-id="datangbuyecheng" />
+                            <span class="img-label">大唐不夜城</span>
+                        </div>
+                    </div>
+                    <div class="mc-body">
+                        <div class="mc-tags">
+                            <span class="mc-tag dynasty">唐</span>
+                            <span class="mc-tag topic">盛唐文化</span>
+                            <span class="mc-tag keyword">灯火</span>
+                        </div>
+                        <h3 class="mc-title">大唐不夜城</h3>
+                        <p class="mc-meta">&#x1F4CD; 西安 · 曲江</p>
+                        <p class="mc-excerpt">夜幕降临，曲江之畔华灯初上。大唐不夜城以盛唐文化为底色，融合现代光影艺术，再现千年前长安城"火树银花合，星桥铁锁开"的繁华盛景。</p>
+                        <span class="mc-readmore">展卷阅读 &#x2192;</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: 丝路长安 -->
+                <div class="magazine-card" data-link="culture.html" data-id="culture-card-silu">
+                    <div class="mc-img">
+                        <div class="img-slot r16x9">
+                            <img src="images/common/placeholder.svg" alt="丝路长安" data-image-id="silu" />
+                            <span class="img-label">丝路长安</span>
+                        </div>
+                    </div>
+                    <div class="mc-body">
+                        <div class="mc-tags">
+                            <span class="mc-tag dynasty">汉</span>
+                            <span class="mc-tag topic">丝绸之路</span>
+                            <span class="mc-tag keyword">交流</span>
+                        </div>
+                        <h3 class="mc-title">丝路长安</h3>
+                        <p class="mc-meta">&#x1F4CD; 西安 · 未央</p>
+                        <p class="mc-excerpt">驼铃声声，商队络绎。从汉长安城未央宫出发，丝绸之路横贯欧亚大陆。长安作为丝路起点，见证了东西方文明跨越千年的对话与交融。</p>
+                        <span class="mc-readmore">展卷阅读 &#x2192;</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align:center;margin-top:3rem;">
+                <a href="culture.html" style="display:inline-block;padding:0.75rem 2rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:0.95rem;letter-spacing:0.05em;border-radius:2px;transition:all 0.3s ease;">展阅全部卷章 &#x2192;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 3 · 探访实录 ========== -->
+    <section class="scroll-section" id="tanfang">
+        <div class="scroll-body">
+            <div class="section-header">
+                <p class="en-subtitle">JOURNEY · CHANG'AN</p>
+                <h2>探访实录</h2>
+                <div class="gold-divider"></div>
+            </div>
+
+            <div class="journal-cards-grid">
+                <!-- Journey 1 -->
+                <article class="journal-card">
+                    <div class="jc-corner jc-tl"></div>
+                    <div class="jc-corner jc-tr"></div>
+                    <div class="jc-corner jc-bl"></div>
+                    <div class="jc-corner jc-br"></div>
+                    <div class="jc-number">壹</div>
+                    <h3 class="jc-title">登临雁塔</h3>
+                    <div class="jc-divider"></div>
+                    <p class="jc-desc">登临大雁塔，俯瞰长安城。千年古塔巍然屹立，每一层都镌刻着玄奘西行取经的传奇故事。塔影斜阳，风铃声声，仿佛穿越回那个梵音缭绕的盛世。</p>
+                    <div class="jc-footer">
+                        <span class="jc-location">📍 大雁塔 · 雁塔区</span>
+                    </div>
+                </article>
+
+                <!-- Journey 2 -->
+                <article class="journal-card">
+                    <div class="jc-corner jc-tl"></div>
+                    <div class="jc-corner jc-tr"></div>
+                    <div class="jc-corner jc-bl"></div>
+                    <div class="jc-corner jc-br"></div>
+                    <div class="jc-number">贰</div>
+                    <h3 class="jc-title">骑行城墙</h3>
+                    <div class="jc-divider"></div>
+                    <p class="jc-desc">骑行于明城墙之上，青砖黛瓦绵延十三公里。脚下的每一块砖石，都承载着六百年的风雨沧桑。极目远眺，古今交织的都市画卷在眼前徐徐展开。</p>
+                    <div class="jc-footer">
+                        <span class="jc-location">📍 西安城墙 · 碑林区</span>
+                    </div>
+                </article>
+
+                <!-- Journey 3 -->
+                <article class="journal-card">
+                    <div class="jc-corner jc-tl"></div>
+                    <div class="jc-corner jc-tr"></div>
+                    <div class="jc-corner jc-bl"></div>
+                    <div class="jc-corner jc-br"></div>
+                    <div class="jc-number">叁</div>
+                    <h3 class="jc-title">回坊寻味</h3>
+                    <div class="jc-divider"></div>
+                    <p class="jc-desc">穿行回民街巷陌深处，羊肉泡馍的醇香与胡辣汤的热辣交织弥漫。这里是长安味道最鲜活的传承之地，一碗一箸之间，品味千年的烟火人间。</p>
+                    <div class="jc-footer">
+                        <span class="jc-location">📍 回民街 · 莲湖区</span>
+                    </div>
+                </article>
+            </div>
+
+            <div style="text-align:center;margin-top:3rem;">
+                <a href="visit.html" style="display:inline-block;padding:0.75rem 2rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:0.95rem;letter-spacing:0.05em;border-radius:2px;transition:all 0.3s ease;">展阅全部游记 &#x2192;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 4 · 风物档案 ========== -->
+    <section class="scroll-section" id="fengwu" style="background:rgba(20,30,55,0.65);">
+        <div class="scroll-body">
+            <div class="section-header">
+                <p class="en-subtitle">ARCHIVES · CHANG'AN</p>
+                <h2>风物档案</h2>
+                <div class="gold-divider"></div>
+            </div>
+
+            <div class="collection-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2rem;">
+                <!-- Card 1: 长安美食 -->
+                <a href="archives.html?category=food" class="archive-text-card" style="text-decoration:none;">
+                    <div class="atc-corner top-left"></div>
+                    <div class="atc-corner top-right"></div>
+                    <div class="atc-corner bottom-left"></div>
+                    <div class="atc-corner bottom-right"></div>
+                    <h3 class="atc-title">长安美食</h3>
+                    <p class="atc-en">Food</p>
+                    <p class="atc-count">收录 4 项</p>
+                    <span class="atc-explore">探索</span>
+                </a>
+
+                <!-- Card 2: 非遗传承 -->
+                <a href="archives.html?category=heritage" class="archive-text-card" style="text-decoration:none;">
+                    <div class="atc-corner top-left"></div>
+                    <div class="atc-corner top-right"></div>
+                    <div class="atc-corner bottom-left"></div>
+                    <div class="atc-corner bottom-right"></div>
+                    <h3 class="atc-title">非遗传承</h3>
+                    <p class="atc-en">Heritage</p>
+                    <p class="atc-count">收录 6 项</p>
+                    <span class="atc-explore">探索</span>
+                </a>
+
+                <!-- Card 3: 古建遗珍 -->
+                <a href="archives.html?category=architecture" class="archive-text-card" style="text-decoration:none;">
+                    <div class="atc-corner top-left"></div>
+                    <div class="atc-corner top-right"></div>
+                    <div class="atc-corner bottom-left"></div>
+                    <div class="atc-corner bottom-right"></div>
+                    <h3 class="atc-title">古建遗珍</h3>
+                    <p class="atc-en">Architecture</p>
+                    <p class="atc-count">收录 8 项</p>
+                    <span class="atc-explore">探索</span>
+                </a>
+
+                <!-- Card 4: 长安方言 -->
+                <a href="archives.html?category=dialect" class="archive-text-card" style="text-decoration:none;">
+                    <div class="atc-corner top-left"></div>
+                    <div class="atc-corner top-right"></div>
+                    <div class="atc-corner bottom-left"></div>
+                    <div class="atc-corner bottom-right"></div>
+                    <h3 class="atc-title">长安方言</h3>
+                    <p class="atc-en">Dialect</p>
+                    <p class="atc-count">收录 3 项</p>
+                    <span class="atc-explore">探索</span>
+                </a>
+            </div>
+
+            <div style="text-align:center;margin-top:3rem;">
+                <a href="archives.html" style="display:inline-block;padding:0.75rem 2rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:0.95rem;letter-spacing:0.05em;border-radius:2px;transition:all 0.3s ease;">展阅百宝卷 &#x2192;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 5 · 长安舆图 ========== -->
+    <section class="scroll-section" id="yutu">
+        <div class="scroll-body">
+            <div class="section-header">
+                <p class="en-subtitle">MAP · CHANG'AN</p>
+                <h2>长安舆图</h2>
+                <div class="gold-divider"></div>
+            </div>
+
+            <div class="ancient-border" style="text-align:center;padding:3rem 2rem;">
+                <div class="seal-stamps" style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem 2rem;margin-bottom:2rem;">
+                    <span class="seal-stamp" style="display:inline-block;padding:0.6rem 1.2rem;border:1px solid rgba(212,168,90,0.35);border-radius:2px;color:var(--gold);font-size:0.9rem;letter-spacing:0.08em;">大雁塔</span>
+                    <span class="seal-stamp" style="display:inline-block;padding:0.6rem 1.2rem;border:1px solid rgba(212,168,90,0.35);border-radius:2px;color:var(--gold);font-size:0.9rem;letter-spacing:0.08em;">钟楼</span>
+                    <span class="seal-stamp" style="display:inline-block;padding:0.6rem 1.2rem;border:1px solid rgba(212,168,90,0.35);border-radius:2px;color:var(--gold);font-size:0.9rem;letter-spacing:0.08em;">鼓楼</span>
+                    <span class="seal-stamp" style="display:inline-block;padding:0.6rem 1.2rem;border:1px solid rgba(212,168,90,0.35);border-radius:2px;color:var(--gold);font-size:0.9rem;letter-spacing:0.08em;">城墙</span>
+                    <span class="seal-stamp" style="display:inline-block;padding:0.6rem 1.2rem;border:1px solid rgba(212,168,90,0.35);border-radius:2px;color:var(--gold);font-size:0.9rem;letter-spacing:0.08em;">小雁塔</span>
+                    <span class="seal-stamp" style="display:inline-block;padding:0.6rem 1.2rem;border:1px solid rgba(212,168,90,0.35);border-radius:2px;color:var(--gold);font-size:0.9rem;letter-spacing:0.08em;">陕西历史博物馆</span>
+                    <span class="seal-stamp" style="display:inline-block;padding:0.6rem 1.2rem;border:1px solid rgba(212,168,90,0.35);border-radius:2px;color:var(--gold);font-size:0.9rem;letter-spacing:0.08em;">大唐不夜城</span>
+                </div>
+
+                <div class="gold-divider" style="margin:2rem auto;"></div>
+
+                <p class="map-subtitle" style="color:rgba(216,211,199,0.6);font-size:0.95rem;line-height:1.8;max-width:600px;margin:2rem auto 0;">一图览尽长安胜迹，沿着千年时光的脉络，探寻这座古城深处的每一处风华。点击地标，穿越时空，与历史相遇。</p>
+            </div>
+
+            <div style="text-align:center;margin-top:2rem;">
+                <a href="map.html" style="display:inline-block;padding:0.75rem 2rem;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:0.95rem;letter-spacing:0.05em;border-radius:2px;transition:all 0.3s ease;">展开舆图 &#x2192;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="footer-seal">志</div>
+        <p class="footer-text">&copy; 长安志 v3 · 穿越千年长安 探寻文明记忆</p>
+        
+        <!-- 素材来源声明 -->
+        <div class="source-declaration">
+            <div class="source-title">素材来源声明</div>
+            <div class="source-content">
+                <div class="source-section">
+                    <span class="source-label">📷 图片素材来源：</span>
+                    <span class="source-list">小红书博主@长安摄影师、@古都漫步、@丝路影像、@城墙记忆</span>
+                </div>
+                <div class="source-section">
+                    <span class="source-label">📝 文字内容参考：</span>
+                    <span class="source-list">《长安十二时辰》、《西安通史》、陕西历史博物馆官网、西安市文旅局</span>
+                </div>
+                <div class="source-section">
+                    <span class="source-label">🏛️ 文化解码板块：</span>
+                    <span class="source-list">基于《丝绸之路文化研究》、《唐长安城考古报告》整理</span>
+                </div>
+                <div class="source-section">
+                    <span class="source-label">🍜 风物档案板块：</span>
+                    <span class="source-list">参考《陕西美食志》、《关中民俗志》及民间传承资料</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== PAGE TRANSITION ========== -->
+    <div class="page-transition"></div>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="js/imageAssets.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+      // ===== 加载统一管理的图片资源 =====
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof ImageAssets !== 'undefined') {
+          document.querySelectorAll('img[data-image-id]').forEach(function(img) {
+            var imageId = img.dataset.imageId;
+            if (imageId) {
+              var imageSrc = ImageAssets.getCultureImage(imageId);
+              if (imageSrc) {
+                img.src = imageSrc;
+              }
+            }
+          });
+        }
+      });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,645 @@
+/* ============================================================
+   文化解码页面样式 - culture.css
+   ============================================================ */
+
+/* 顶部文化长卷 Banner */
+.culture-banner {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, #051020 0%, #08172f 30%, #0d1b3d 50%, #08172f 70%, #051020 100%);
+}
+
+.banner-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 30% 15%, rgba(212, 168, 90, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 85%, rgba(74, 123, 157, 0.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(159, 58, 44, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(212, 168, 90, 0.05) 0%, transparent 40%);
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.banner-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  border: 3px solid var(--gold);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  color: var(--gold);
+  margin-bottom: 1.8rem;
+  box-shadow: 
+    0 0 30px rgba(212, 168, 90, 0.2),
+    inset 0 0 20px rgba(212, 168, 90, 0.1);
+}
+
+.culture-banner h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.98);
+  margin: 0 0 1.2rem;
+  letter-spacing: 0.15em;
+  text-shadow: 
+    0 0 40px rgba(212, 168, 90, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.banner-divider {
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold), transparent);
+  margin: 0 auto 1.8rem;
+  position: relative;
+}
+
+.banner-divider::before,
+.banner-divider::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+}
+
+.banner-divider::before { left: 0; }
+.banner-divider::after { right: 0; }
+
+.banner-subtitle {
+  font-size: 1.25rem;
+  color: rgba(216, 211, 199, 0.9);
+  margin: 0 0 1.2rem;
+  letter-spacing: 0.08em;
+}
+
+.banner-poem {
+  font-size: 1.4rem;
+  color: var(--gold);
+  font-style: italic;
+  margin: 0;
+  letter-spacing: 0.12em;
+  font-family: var(--font-display);
+}
+
+.banner-scroll-lace {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 35px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 25px,
+    rgba(212, 168, 90, 0.12) 25px,
+    rgba(212, 168, 90, 0.12) 27px
+  );
+}
+
+.banner-scroll-lace.top {
+  top: 0;
+  border-bottom: 1px solid rgba(212, 168, 90, 0.25);
+}
+
+.banner-scroll-lace.bottom {
+  bottom: 0;
+  border-top: 1px solid rgba(212, 168, 90, 0.25);
+}
+
+/* 通用区块头部 */
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--cinnabar);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.section-header h2 {
+  font-size: 2.4rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 1.2rem;
+  letter-spacing: 0.1em;
+  font-family: var(--font-display);
+}
+
+/* 推荐专题区域 */
+.featured-section {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+.featured-card {
+  position: relative;
+  background: rgba(10, 20, 45, 0.7);
+  border: 1px solid rgba(212, 168, 90, 0.18);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.featured-card:hover {
+  border-color: rgba(212, 168, 90, 0.5);
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+}
+
+.featured-img {
+  position: relative;
+  aspect-ratio: 16/9;
+}
+
+.featured-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 15, 30, 0.95) 0%, rgba(8, 23, 47, 0.5) 60%, transparent 100%);
+}
+
+.featured-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 3.5rem;
+}
+
+.featured-tags {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 1.2rem;
+}
+
+.featured-card .tag {
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+}
+
+.featured-card .tag.dynasty {
+  background: rgba(212, 168, 90, 0.18);
+  border: 1px solid rgba(212, 168, 90, 0.5);
+  color: var(--gold);
+}
+
+.featured-card .tag.topic {
+  background: rgba(74, 123, 157, 0.18);
+  border: 1px solid rgba(74, 123, 157, 0.5);
+  color: rgba(100, 160, 200, 0.9);
+}
+
+.featured-card h3 {
+  font-size: 2.2rem;
+  color: rgba(255, 255, 255, 0.98);
+  margin: 0 0 1.2rem;
+  letter-spacing: 0.08em;
+  font-family: var(--font-display);
+}
+
+.featured-card p {
+  font-size: 1.15rem;
+  color: rgba(216, 211, 199, 0.88);
+  line-height: 1.9;
+  margin: 0 0 1.8rem;
+  max-width: 800px;
+}
+
+.featured-readmore {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  transition: all 0.3s ease;
+}
+
+.featured-readmore:hover {
+  color: var(--gold-light);
+  gap: 12px;
+}
+
+/* 文明脉络时间轴 */
+.timeline-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 20, 45, 0.4) 20%, rgba(10, 20, 45, 0.4) 80%, transparent 100%);
+}
+
+.civilization-timeline {
+  position: relative;
+  padding: 3rem 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    rgba(212, 168, 90, 0.2) 10%, 
+    rgba(212, 168, 90, 0.5) 25%, 
+    rgba(212, 168, 90, 0.8) 50%, 
+    rgba(212, 168, 90, 0.5) 75%, 
+    rgba(212, 168, 90, 0.2) 90%, 
+    transparent 100%);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.timeline-line::before,
+.timeline-line::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  background: var(--bg-deep);
+}
+
+.timeline-line::before { top: -6px; }
+.timeline-line::after { bottom: -6px; }
+
+.timeline-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.timeline-node:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timeline-node:last-child {
+  margin-bottom: 0;
+}
+
+.node-dot {
+  position: absolute;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 4px solid rgba(212, 168, 90, 0.25);
+  transform: translateX(-50%);
+  z-index: 2;
+  box-shadow: 0 0 15px rgba(212, 168, 90, 0.3);
+}
+
+.timeline-node.highlight .node-dot {
+  width: 28px;
+  height: 28px;
+  border-width: 5px;
+  border-color: rgba(212, 168, 90, 0.5);
+  box-shadow: 0 0 30px rgba(212, 168, 90, 0.6);
+}
+
+.node-content {
+  width: 44%;
+  padding: 1.8rem;
+  background: rgba(10, 20, 45, 0.6);
+  border: 1px solid rgba(212, 168, 90, 0.15);
+  border-radius: 12px;
+  transition: all 0.35s ease;
+}
+
+.timeline-node:hover .node-content {
+  border-color: rgba(212, 168, 90, 0.4);
+  background: rgba(10, 20, 45, 0.8);
+  transform: translateY(-3px);
+}
+
+.timeline-node.highlight .node-content {
+  border-color: rgba(212, 168, 90, 0.4);
+  background: rgba(212, 168, 90, 0.08);
+}
+
+.node-era {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.12em;
+}
+
+.timeline-node.highlight .node-era {
+  color: var(--gold-light);
+}
+
+.node-year {
+  font-size: 0.85rem;
+  color: rgba(212, 168, 90, 0.7);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.06em;
+}
+
+.node-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.08em;
+}
+
+.node-desc {
+  font-size: 0.95rem;
+  color: rgba(216, 211, 199, 0.75);
+  line-height: 1.8;
+}
+
+.node-year {
+  font-size: 0.85rem;
+  color: rgba(74, 123, 157, 0.8);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.8rem;
+}
+
+.node-title {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+.node-desc {
+  font-size: 0.95rem;
+  color: rgba(216, 211, 199, 0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 文化标签导航 */
+.tag-nav-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.tag-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.tag-item {
+  padding: 10px 24px;
+  background: rgba(13, 27, 61, 0.5);
+  border: 1px solid rgba(212, 168, 90, 0.2);
+  border-radius: 30px;
+  color: rgba(216, 211, 199, 0.8);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tag-item:hover {
+  border-color: rgba(212, 168, 90, 0.5);
+  color: var(--gold);
+}
+
+.tag-item.active {
+  background: rgba(212, 168, 90, 0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* 专题卡片网格 */
+.topics-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* 统一卡片样式 */
+.culture-card,
+.topic-card,
+.card {
+  display: flex;
+  min-height: 380px;
+  background: rgba(13, 27, 61, 0.5);
+  border: 1px solid rgba(212, 168, 90, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.culture-card:hover,
+.topic-card:hover,
+.card:hover {
+  border-color: rgba(212, 168, 90, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* 统一图片区域 */
+.card-image,
+.card-img {
+  flex: 1.2;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.card-image img,
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* 修复 img-slot 在卡片中覆盖 height:100% 的问题 */
+.card-image .img-slot,
+.card-img .img-slot {
+  position: absolute;
+  inset: 0;
+  height: 100% !important;
+  padding-bottom: 0 !important;
+}
+
+.card-image .img-slot img,
+.card-img .img-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* 统一文字内容区域 */
+.card-content,
+.card-body {
+  flex: 0.8;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.card-tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 0.8rem;
+}
+
+.card-tags .tag {
+  padding: 3px 10px;
+  background: rgba(212, 168, 90, 0.12);
+  border: 1px solid rgba(212, 168, 90, 0.25);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+}
+
+.topic-card h3 {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.topic-card p {
+  font-size: 0.95rem;
+  color: rgba(216, 211, 199, 0.75);
+  line-height: 1.7;
+  margin: 0 0 1rem;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-meta {
+  font-size: 0.85rem;
+  color: rgba(74, 123, 157, 0.7);
+}
+
+.card-read {
+  font-size: 0.85rem;
+  color: var(--gold);
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  transition: color 0.3s ease;
+}
+
+.card-read:hover {
+  color: var(--gold-light);
+}
+
+/* 底部区域 */
+.section-footer {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.section-footer p {
+  color: rgba(216, 211, 199, 0.25);
+  font-size: 0.85rem;
+  margin: 1rem 0 0;
+  font-family: var(--font-display);
+  letter-spacing: 0.15em;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .culture-banner h1 {
+    font-size: 2.2rem;
+  }
+  
+  .featured-content {
+    padding: 1.5rem;
+  }
+  
+  .featured-card h3 {
+    font-size: 1.4rem;
+  }
+  
+  .timeline-line {
+    left: 30px;
+  }
+  
+  .node-dot {
+    left: 30px;
+  }
+  
+  .timeline-node {
+    flex-direction: column !important;
+    align-items: flex-start;
+    padding-left: 50px;
+  }
+  
+  .node-content {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .topics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .culture-card,
+  .topic-card,
+  .card {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .card-image,
+  .card-img {
+    flex: none;
+    width: 100%;
+    height: 200px;
+  }
+  
+  .card-content,
+  .card-body {
+    flex: none;
+    width: 100%;
+    padding: 1.5rem;
+  }
+}
